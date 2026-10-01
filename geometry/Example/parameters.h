@@ -14,7 +14,7 @@ constexpr double domainLengthY = 100e-6;
 
 // Lattice resolution [m]
 constexpr double dx = 0.5e-6;
-
+constexpr double poreSizeBinWidth = 0.5e-6;
 
 // =====================================================
 // Cathode particle parameters

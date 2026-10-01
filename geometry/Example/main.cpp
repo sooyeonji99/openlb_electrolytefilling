@@ -1,6 +1,7 @@
 #include "parameters.h"
 #include "geometry.h"
 #include "vtk_writer.h"
+#include "analysis.h"
 
 #include <iostream>
 
@@ -60,7 +61,42 @@ int main()
     double gridPorosity =
         calculateGridPorosity(materialGrid);
 
+    bool verticallyConnected =
+    checkVerticalPoreConnectivity(
+        materialGrid,
+        nx,
+        ny
+    );
 
+    double connectedPoreFraction =
+        calculateConnectedPoreFraction(
+            materialGrid,
+            nx,
+            ny
+        );
+
+    
+    auto poreDistanceMap =
+        calculatePoreDistanceMap(
+            materialGrid,
+            nx,
+            ny,
+            Parameters::dx
+        );
+
+
+    double meanPoreDiameter =
+        calculateMeanPoreDiameter(
+            poreDistanceMap,
+            materialGrid
+        );
+
+
+    double maxPoreDiameter =
+        calculateMaxPoreDiameter(
+            poreDistanceMap,
+            materialGrid
+        );
     // =================================================
     // 6. Print geometry information
     // =================================================
@@ -115,18 +151,47 @@ int main()
     std::cout << "======================================" << std::endl;
 
 
+    std::cout
+    << "Vertical pore connectivity = "
+    << (verticallyConnected ? "YES" : "NO")
+    << std::endl;
+
+    std::cout
+        << "Connected pore fraction = "
+        << connectedPoreFraction
+        << std::endl;
+
     // =================================================
     // 7. Write VTK file
     // =================================================
+    std::cout
+    << "Mean local pore diameter = "
+    << meanPoreDiameter * 1e6
+    << " um"
+    << std::endl;
 
+    std::cout
+        << "Maximum local pore diameter = "
+        << maxPoreDiameter * 1e6
+        << " um"
+        << std::endl;
+
+    
     writeVTK(
         materialGrid,
+        poreDistanceMap,
         nx,
         ny,
         Parameters::dx,
         "cathode_geometry.vtk"
     );
 
+    writePoreSizeDistributionCSV(
+        poreDistanceMap,
+        materialGrid,
+        0.5e-6,
+        "pore_size_distribution.csv"
+    );
 
     return 0;
 }

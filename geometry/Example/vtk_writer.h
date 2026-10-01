@@ -24,6 +24,7 @@ double calculateGridPorosity(
 // Write the binary geometry as a legacy VTK file
 void writeVTK(
     const std::vector<int>& materialGrid,
+    const std::vector<double>& poreDistanceMap,
     int nx,
     int ny,
     double dx,

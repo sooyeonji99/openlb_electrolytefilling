@@ -1,1 +1,1 @@
-main.o: geometry.cpp geometry.h parameters.h
+main.o: analysis.cpp analysis.h

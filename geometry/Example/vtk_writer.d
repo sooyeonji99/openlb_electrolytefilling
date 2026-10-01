@@ -1,1 +1,1 @@
-vtk_writer.o: geometry.cpp geometry.h parameters.h
+vtk_writer.o: analysis.cpp analysis.h
