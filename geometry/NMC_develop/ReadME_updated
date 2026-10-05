@@ -6,4 +6,19 @@
 ## Particle radius = 0.1-10 um
 ## Resolution = 0.1 um
 ->
-## Master
+## Master material grid
+->
+## Pore characterization
+Grid porosity = 0.30
+Vertical connectivity = YES
+Connected pore fraction = 0.996
+Pore-radius distribution
+->
+## OpenLB SuperGeometry
+Material 0 = boundary/outside
+Material 1 = pore
+Material 2 = solid
+->
+## SuperVTMwriter2D
+->
+## ParaView verification 
