@@ -183,14 +183,14 @@ int main()
         nx,
         ny,
         Parameters::dx,
-        "cathode_geometry_21.vtk"
+        "cathode_geometry.vtk"
     );
 
     writePoreSizeDistributionCSV(
         poreDistanceMap,
         materialGrid,
-        0.1e-6,
-        "pore_size_distribution_21.csv"
+        0.5e-6,
+        "pore_size_distribution.csv"
     );
 
     return 0;
