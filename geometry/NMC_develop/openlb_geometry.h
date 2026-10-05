@@ -2,13 +2,15 @@
 #define OPENLB_GEOMETRY_H
 
 #include "olb2D.h"
-#include "olb2D.hh"
+// #include "olb2D.hh"
 
 #include "parameters.h"
 
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <string>
+
 
 namespace olb
 {
@@ -264,6 +266,111 @@ void prepareOpenLBGeometry(
 
 
     geometry.print();
+}
+
+// ============================================================
+// OpenLB SuperGeometry material-number output functor
+//
+// ParaView output:
+//   0 = outside
+//   1 = solid
+//   2 = pore / fluid
+// ============================================================
+
+template<typename T>
+class SuperGeometryMaterialOutput2D
+    : public olb::SuperF2D<T,T>
+{
+private:
+
+    olb::SuperGeometry<T,2>& _geometry;
+
+public:
+
+    SuperGeometryMaterialOutput2D(
+        olb::SuperGeometry<T,2>& geometry)
+        :
+        olb::SuperF2D<T,T>(geometry, 1),
+        _geometry(geometry)
+    {
+        this->getName() = "material";
+    }
+
+
+    bool operator()(
+        T output[],
+        const int input[]) override
+    {
+        // input[0] = global cuboid ID
+        // input[1] = lattice x
+        // input[2] = lattice y
+
+        auto& load =
+            _geometry.getLoadBalancer();
+
+        // The VTK writer may ask for a cuboid
+        // that is not local to this process.
+        if (!load.isLocal(input[0])) {
+            return false;
+        }
+
+        // Convert global cuboid ID -> local cuboid ID
+        const int iCloc =
+            load.loc(input[0]);
+
+        const int iX = input[1];
+        const int iY = input[2];
+
+        const int material =
+            _geometry
+                .getBlockGeometry(iCloc)
+                .get(iX, iY);
+
+        output[0] =
+            static_cast<T>(material);
+
+        return true;
+    }
+};
+
+// ============================================================
+// Write actual OpenLB SuperGeometry material field
+// ============================================================
+
+template<typename T>
+void writeOpenLBGeometryVTK(
+    olb::SuperGeometry<T,2>& geometry)
+{
+    olb::OstreamManager clout(
+        std::cout,
+        "OpenLBGeometryVTK"
+    );
+
+    clout
+        << "Writing OpenLB material geometry..."
+        << std::endl;
+
+
+    SuperGeometryMaterialOutput2D<T>
+        materialField(geometry);
+
+
+    olb::SuperVTMwriter2D<T>
+        vtkWriter("openlb_geometry");
+
+
+    vtkWriter.addFunctor(
+        materialField,
+        "material"
+    );
+
+
+    vtkWriter.write(0);
+
+
+    clout
+        << "OpenLB material geometry written."
+        << std::endl;
 }
 
 }

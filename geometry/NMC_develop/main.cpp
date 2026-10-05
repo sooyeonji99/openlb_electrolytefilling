@@ -5,7 +5,7 @@
 #include "openlb_geometry.h"
 
 #include "olb2D.h"
-// #include "olb2D.hh"
+#include "olb2D.hh"
 
 #include <iostream>
 #include <iomanip>
@@ -311,7 +311,9 @@ int main(
         material
     );
 
-
+    writeOpenLBGeometryVTK(
+        superGeometry
+    );
     // ========================================================
     // 8. Print OpenLB geometry information
     // ========================================================
