@@ -6,23 +6,32 @@
 #include <iostream>
 #include <cmath>
 #include <algorithm>
+#include <utility>
 
 
 namespace
 {
 
-inline int index(int i, int j)
+inline int gridIndex(
+    int i,
+    int j)
 {
-    return j * param::nx + i;
+    return
+        j * param::nx + i;
 }
 
 
-bool isInside(int i, int j)
+bool isInside(
+    int i,
+    int j)
 {
     return
-        i >= 0 &&
-        i < param::nx &&
-        j >= 0 &&
+        i >= 0
+        &&
+        i < param::nx
+        &&
+        j >= 0
+        &&
         j < param::ny;
 }
 
@@ -33,67 +42,109 @@ bool isInside(int i, int j)
 // Main analysis
 // ============================================================
 
-PoreAnalysisResult analyzePoreStructure(
+PoreAnalysisResult
+analyzePoreStructure(
     const std::vector<int>& material)
 {
     PoreAnalysisResult result{};
 
 
-    // --------------------------------------------------------
-    // Porosity
-    // --------------------------------------------------------
+    std::cout
+        << "\nAnalyzing pore structure..."
+        << std::endl;
 
-    long long poreCount = 0;
 
-    for (int value : material)
+    // ========================================================
+    // 1. Porosity
+    // ========================================================
+
+    long long poreCount =
+        0;
+
+
+    for (
+        int value :
+        material
+    )
     {
-        if (value == param::poreMaterial)
+        if (
+            value
+            ==
+            param::poreMaterial
+        )
+        {
             ++poreCount;
+        }
     }
 
 
     const long long totalCells =
         static_cast<long long>(
-            param::nx) *
-        param::ny;
+            param::nx
+        )
+        *
+        static_cast<long long>(
+            param::ny
+        );
 
 
     result.porosity =
-        static_cast<double>(poreCount) /
-        static_cast<double>(totalCells);
+        static_cast<double>(
+            poreCount
+        )
+        /
+        static_cast<double>(
+            totalCells
+        );
 
 
-    // --------------------------------------------------------
-    // Connectivity analysis
-    // --------------------------------------------------------
+    // ========================================================
+    // 2. Vertical pore connectivity
+    // ========================================================
 
     std::vector<bool> visited(
         totalCells,
-        false);
+        false
+    );
+
 
     std::queue<int> queue;
 
 
-    // Start from bottom boundary
-    for (int i = 0; i < param::nx; ++i)
+    // Start BFS from bottom pore cells
+    for (
+        int i = 0;
+        i < param::nx;
+        ++i
+    )
     {
-        const int id = index(i, 0);
+        const int id =
+            gridIndex(
+                i,
+                0
+            );
+
 
         if (
-            material[id] ==
+            material[id]
+            ==
             param::poreMaterial
         )
         {
-            visited[id] = true;
-            queue.push(id);
+            visited[id] =
+                true;
+
+            queue.push(
+                id
+            );
         }
     }
 
 
-    const int di4[4] =
+    const int di[4] =
         {1, -1, 0, 0};
 
-    const int dj4[4] =
+    const int dj[4] =
         {0, 0, 1, -1};
 
 
@@ -112,59 +163,99 @@ PoreAnalysisResult analyzePoreStructure(
             current / param::nx;
 
 
-        for (int n = 0; n < 4; ++n)
+        for (
+            int n = 0;
+            n < 4;
+            ++n
+        )
         {
             const int ni =
-                i + di4[n];
+                i + di[n];
 
             const int nj =
-                j + dj4[n];
-
-
-            if (!isInside(ni, nj))
-                continue;
-
-
-            const int nid =
-                index(ni, nj);
+                j + dj[n];
 
 
             if (
-                !visited[nid] &&
-                material[nid] ==
+                !isInside(
+                    ni,
+                    nj
+                )
+            )
+            {
+                continue;
+            }
+
+
+            const int nid =
+                gridIndex(
+                    ni,
+                    nj
+                );
+
+
+            if (
+                !visited[nid]
+                &&
+                material[nid]
+                ==
                 param::poreMaterial
             )
             {
-                visited[nid] = true;
-                queue.push(nid);
+                visited[nid] =
+                    true;
+
+                queue.push(
+                    nid
+                );
             }
         }
     }
 
 
-    long long connectedPoreCount = 0;
+    long long connectedPoreCount =
+        0;
 
-    result.verticalConnectivity = false;
+
+    result.verticalConnectivity =
+        false;
 
 
-    for (int j = 0; j < param::ny; ++j)
+    for (
+        int j = 0;
+        j < param::ny;
+        ++j
+    )
     {
-        for (int i = 0; i < param::nx; ++i)
+        for (
+            int i = 0;
+            i < param::nx;
+            ++i
+        )
         {
             const int id =
-                index(i, j);
+                gridIndex(
+                    i,
+                    j
+                );
 
 
             if (
-                material[id] ==
-                    param::poreMaterial &&
+                material[id]
+                ==
+                param::poreMaterial
+                &&
                 visited[id]
             )
             {
                 ++connectedPoreCount;
 
 
-                if (j == param::ny - 1)
+                if (
+                    j
+                    ==
+                    param::ny - 1
+                )
                 {
                     result.verticalConnectivity =
                         true;
@@ -178,83 +269,140 @@ PoreAnalysisResult analyzePoreStructure(
     {
         result.connectedPoreFraction =
             static_cast<double>(
-                connectedPoreCount) /
+                connectedPoreCount
+            )
+            /
             static_cast<double>(
-                poreCount);
+                poreCount
+            );
     }
     else
     {
-        result.connectedPoreFraction = 0.0;
+        result.connectedPoreFraction =
+            0.0;
     }
 
 
-    // --------------------------------------------------------
-    // Local pore radius
-    //
-    // Distance from each pore cell to nearest solid cell.
-    //
-    // Simple direct search version.
-    // --------------------------------------------------------
+    // ========================================================
+    // 3. Collect solid cells
+    // ========================================================
 
-    std::vector<std::pair<int,int>>
-        solidCells;
+    std::vector<
+        std::pair<int,int>
+    > solidCells;
 
 
-    for (int j = 0; j < param::ny; ++j)
+    solidCells.reserve(
+        totalCells
+    );
+
+
+    for (
+        int j = 0;
+        j < param::ny;
+        ++j
+    )
     {
-        for (int i = 0; i < param::nx; ++i)
+        for (
+            int i = 0;
+            i < param::nx;
+            ++i
+        )
         {
             if (
-                material[index(i,j)] ==
+                material[
+                    gridIndex(i,j)
+                ]
+                ==
                 param::solidMaterial
             )
             {
-                solidCells.emplace_back(i,j);
+                solidCells.emplace_back(
+                    i,
+                    j
+                );
             }
         }
     }
 
 
+    // ========================================================
+    // 4. Local pore radius
+    //
+    // Distance from pore cell to nearest solid cell.
+    //
+    // NOTE:
+    // This is a brute-force implementation.
+    // ========================================================
+
     result.poreRadiusValues.clear();
 
-    double sumRadius = 0.0;
-    double maximumRadius = 0.0;
+
+    double sumRadius =
+        0.0;
+
+    double maximumRadius =
+        0.0;
 
 
-    for (int j = 0; j < param::ny; ++j)
+    std::cout
+        << "Calculating pore-radius field..."
+        << std::endl;
+
+
+    for (
+        int j = 0;
+        j < param::ny;
+        ++j
+    )
     {
-        for (int i = 0; i < param::nx; ++i)
+        for (
+            int i = 0;
+            i < param::nx;
+            ++i
+        )
         {
             if (
-                material[index(i,j)] !=
+                material[
+                    gridIndex(i,j)
+                ]
+                !=
                 param::poreMaterial
             )
+            {
                 continue;
+            }
 
 
             double minimumDistanceSquared =
                 1.0e100;
 
 
-            for (const auto& solid :
-                 solidCells)
+            for (
+                const auto& solid :
+                solidCells
+            )
             {
-                const double di =
+                const double deltaI =
                     static_cast<double>(
-                        i - solid.first);
+                        i - solid.first
+                    );
 
-                const double dj =
+                const double deltaJ =
                     static_cast<double>(
-                        j - solid.second);
+                        j - solid.second
+                    );
 
 
                 const double distanceSquared =
-                    di * di +
-                    dj * dj;
+                    deltaI * deltaI
+                    +
+                    deltaJ * deltaJ;
 
 
                 if (
-                    distanceSquared <
+                    distanceSquared
+                    <
                     minimumDistanceSquared
                 )
                 {
@@ -267,20 +415,25 @@ PoreAnalysisResult analyzePoreStructure(
             const double radius =
                 std::sqrt(
                     minimumDistanceSquared
-                ) *
+                )
+                *
                 param::dx;
 
 
-            result.poreRadiusValues
-                .push_back(radius);
+            result.poreRadiusValues.push_back(
+                radius
+            );
 
 
-            sumRadius += radius;
+            sumRadius +=
+                radius;
+
 
             maximumRadius =
                 std::max(
                     maximumRadius,
-                    radius);
+                    radius
+                );
         }
     }
 
@@ -290,15 +443,18 @@ PoreAnalysisResult analyzePoreStructure(
     )
     {
         result.meanPoreRadius =
-            sumRadius /
+            sumRadius
+            /
             static_cast<double>(
                 result
                 .poreRadiusValues
-                .size());
+                .size()
+            );
     }
     else
     {
-        result.meanPoreRadius = 0.0;
+        result.meanPoreRadius =
+            0.0;
     }
 
 
@@ -306,26 +462,46 @@ PoreAnalysisResult analyzePoreStructure(
         maximumRadius;
 
 
+    std::cout
+        << "Pore analysis completed."
+        << std::endl;
+
+
     return result;
 }
 
 
 // ============================================================
-// Write pore-radius distribution
+// CSV
 // ============================================================
 
 void writePoreRadiusDistributionCSV(
     const std::vector<double>& values)
 {
     std::ofstream file(
-        param::poreRadiusCsvFileName);
+        param::poreRadiusCsvFileName
+    );
 
 
-    file << "pore_radius_m,"
-         << "pore_radius_um\n";
+    if (!file.is_open())
+    {
+        std::cerr
+            << "Error: Cannot open pore-radius CSV."
+            << std::endl;
+
+        return;
+    }
 
 
-    for (double radius : values)
+    file
+        << "pore_radius_m,"
+        << "pore_radius_um\n";
+
+
+    for (
+        double radius :
+        values
+    )
     {
         file
             << radius
@@ -339,7 +515,7 @@ void writePoreRadiusDistributionCSV(
 
 
     std::cout
-        << "Pore radius CSV written: "
+        << "Pore-radius CSV written: "
         << param::poreRadiusCsvFileName
         << std::endl;
 }

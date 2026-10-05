@@ -8,19 +8,26 @@ namespace param
 {
 
 // ============================================================
-// Domain
+// Physical domain
 // ============================================================
 
-// Physical domain size
+// Electrode dimensions
 constexpr double lx = 100.0e-6;   // [m]
 constexpr double ly = 100.0e-6;   // [m]
 
-// Grid resolution
+// Spatial resolution
+//
+// 0.1 um resolution:
+// 100 um / 0.1 um = 1000 cells
+//
 constexpr double dx = 0.1e-6;     // [m]
 
 // Number of grid cells
-constexpr int nx = static_cast<int>(lx / dx);
-constexpr int ny = static_cast<int>(ly / dx);
+constexpr int nx =
+    static_cast<int>(lx / dx);
+
+constexpr int ny =
+    static_cast<int>(ly / dx);
 
 
 // ============================================================
@@ -28,52 +35,74 @@ constexpr int ny = static_cast<int>(ly / dx);
 // ============================================================
 
 // Particle radius range
-constexpr double minParticleRadius = 1.0e-7;   // [m] = 0.1 um
-constexpr double maxParticleRadius = 10.0e-6;  // [m] = 10 um
+constexpr double minParticleRadius =
+    1.0e-7;                       // [m] = 0.1 um
 
-// Target porosity
-constexpr double targetPorosity = 0.30;
+constexpr double maxParticleRadius =
+    10.0e-6;                      // [m] = 10 um
 
-// Tolerance for terminating particle generation
-constexpr double porosityTolerance = 0.002;
+// Target pore fraction
+constexpr double targetPorosity =
+    0.30;
+
+// Allowed deviation during particle generation
+constexpr double porosityTolerance =
+    0.002;
 
 
 // ============================================================
-// Random particle generation
+// Random generation
 // ============================================================
 
-constexpr std::uint32_t randomSeed = 12345;
+constexpr std::uint32_t randomSeed =
+    12345;
 
-// Maximum number of placement trials
-constexpr int maxPlacementAttempts = 2000000;
+// Maximum consecutive failed placement attempts
+constexpr int maxPlacementAttempts =
+    2000000;
 
 // Minimum gap between particles
-// 0.0 = particles may touch but cannot overlap
-constexpr double minimumParticleGap = 0.0;
+//
+// 0 = particles may touch
+//     but cannot overlap
+//
+constexpr double minimumParticleGap =
+    0.0;
 
 
 // ============================================================
-// Material IDs
+// Custom grid material IDs
+//
+// NOTE:
+// These are NOT OpenLB material numbers.
 // ============================================================
 
-constexpr int poreMaterial  = 0;
-constexpr int solidMaterial = 1;
+constexpr int poreMaterial =
+    0;
+
+constexpr int solidMaterial =
+    1;
+
+
+// ============================================================
+// OpenLB material IDs
+// ============================================================
+
+constexpr int openlbSolidMaterial =
+    1;
+
+constexpr int openlbPoreMaterial =
+    2;
 
 
 // ============================================================
 // Connectivity
 // ============================================================
 
-// 4-neighbor connectivity in 2D
-constexpr bool useDiagonalConnectivity = false;
-
-
-// ============================================================
-// Pore-size analysis
-// ============================================================
-
-// Number of bins for pore-radius histogram
-constexpr int poreRadiusBins = 100;
+// Current connectivity analysis:
+// 4-neighbor connectivity
+constexpr bool useDiagonalConnectivity =
+    false;
 
 
 // ============================================================

@@ -16,23 +16,28 @@ struct PoreAnalysisResult
 
     double maxPoreRadius;
 
-    std::vector<double> poreRadiusValues;
+    std::vector<double>
+        poreRadiusValues;
 };
 
 
-// ------------------------------------------------------------
+// ============================================================
 // Main pore analysis
-// ------------------------------------------------------------
+// ============================================================
 
-PoreAnalysisResult analyzePoreStructure(
-    const std::vector<int>& material);
+PoreAnalysisResult
+analyzePoreStructure(
+    const std::vector<int>& material
+);
 
 
-// ------------------------------------------------------------
+// ============================================================
 // CSV output
-// ------------------------------------------------------------
+// ============================================================
 
 void writePoreRadiusDistributionCSV(
-    const std::vector<double>& poreRadiusValues);
+    const std::vector<double>& poreRadiusValues
+);
+
 
 #endif

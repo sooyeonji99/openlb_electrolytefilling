@@ -5,6 +5,8 @@
 
 
 void writeGeometryVTK(
-    const std::vector<int>& material);
+    const std::vector<int>& material
+);
+
 
 #endif

@@ -3,6 +3,11 @@
 
 #include <vector>
 
+
+// ============================================================
+// Particle structure
+// ============================================================
+
 struct Particle2D
 {
     double x;
@@ -11,27 +16,30 @@ struct Particle2D
 };
 
 
-// ------------------------------------------------------------
+// ============================================================
 // Particle generation
-// ------------------------------------------------------------
+// ============================================================
 
-std::vector<Particle2D> generateParticles();
+std::vector<Particle2D>
+generateParticles();
 
 
-// ------------------------------------------------------------
-// Geometry construction
-// ------------------------------------------------------------
+// ============================================================
+// Custom material grid
+//
+// pore  = 0
+// solid = 1
+// ============================================================
 
-// 0 = pore
-// 1 = solid
-std::vector<int> buildMaterialGrid(
+std::vector<int>
+buildMaterialGrid(
     const std::vector<Particle2D>& particles
 );
 
 
-// ------------------------------------------------------------
+// ============================================================
 // Particle statistics
-// ------------------------------------------------------------
+// ============================================================
 
 double calculateAverageParticleRadius(
     const std::vector<Particle2D>& particles
@@ -44,5 +52,6 @@ double calculateMinimumParticleRadius(
 double calculateMaximumParticleRadius(
     const std::vector<Particle2D>& particles
 );
+
 
 #endif

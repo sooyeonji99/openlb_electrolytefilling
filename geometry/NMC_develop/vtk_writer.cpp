@@ -4,11 +4,14 @@
 #include <fstream>
 #include <iostream>
 
+
 void writeGeometryVTK(
-    const std::vector<int>& material
-)
+    const std::vector<int>& material)
 {
-    std::ofstream file(param::vtkFileName);
+    std::ofstream file(
+        param::vtkFileName
+    );
+
 
     if (!file.is_open())
     {
@@ -19,41 +22,80 @@ void writeGeometryVTK(
         return;
     }
 
-    file << "# vtk DataFile Version 3.0\n";
-    file << "Cathode porous geometry\n";
-    file << "ASCII\n";
-    file << "DATASET STRUCTURED_POINTS\n";
 
-    file << "DIMENSIONS "
-         << param::nx << " "
-         << param::ny << " "
-         << 1 << "\n";
+    file
+        << "# vtk DataFile Version 3.0\n";
 
-    file << "ORIGIN 0 0 0\n";
+    file
+        << "Cathode porous geometry\n";
 
-    file << "SPACING "
-         << param::dx << " "
-         << param::dx << " "
-         << param::dx << "\n";
+    file
+        << "ASCII\n";
 
-    file << "POINT_DATA "
-         << param::nx * param::ny
-         << "\n";
+    file
+        << "DATASET STRUCTURED_POINTS\n";
 
-    file << "SCALARS material int 1\n";
-    file << "LOOKUP_TABLE default\n";
 
-    for (int j = 0; j < param::ny; ++j)
+    file
+        << "DIMENSIONS "
+        << param::nx
+        << " "
+        << param::ny
+        << " "
+        << 1
+        << "\n";
+
+
+    file
+        << "ORIGIN 0 0 0\n";
+
+
+    file
+        << "SPACING "
+        << param::dx
+        << " "
+        << param::dx
+        << " "
+        << param::dx
+        << "\n";
+
+
+    file
+        << "POINT_DATA "
+        << param::nx * param::ny
+        << "\n";
+
+
+    file
+        << "SCALARS material int 1\n";
+
+    file
+        << "LOOKUP_TABLE default\n";
+
+
+    for (
+        int j = 0;
+        j < param::ny;
+        ++j
+    )
     {
-        for (int i = 0; i < param::nx; ++i)
+        for (
+            int i = 0;
+            i < param::nx;
+            ++i
+        )
         {
             file
-                << material[j * param::nx + i]
+                << material[
+                    j * param::nx + i
+                ]
                 << "\n";
         }
     }
 
+
     file.close();
+
 
     std::cout
         << "VTK file written: "
