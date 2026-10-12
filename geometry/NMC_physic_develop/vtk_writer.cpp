@@ -102,3 +102,45 @@ void writeGeometryVTK(
         << param::vtkFileName
         << std::endl;
 }
+
+
+#include <fstream>
+#include <iostream>
+#include <iomanip>
+
+// ============================================================
+// Write generated solid-circle radius distribution
+// ============================================================
+
+void writeCircleRadiusDistributionCSV(
+    const std::vector<Particle2D>& particles)
+{
+    std::ofstream file(
+        param::circleRadiusCsvFileName
+    );
+
+    if (!file.is_open())
+    {
+        std::cerr
+            << "Error: Cannot open circle-radius CSV.\n";
+        return;
+    }
+
+    file << std::setprecision(12);
+
+    file << "circle_radius_m,circle_radius_um\n";
+
+    for (const auto& particle : particles)
+    {
+        file
+            << particle.radius
+            << ","
+            << particle.radius * 1.0e6
+            << "\n";
+    }
+
+    std::cout
+        << "Circle-radius CSV written: "
+        << param::circleRadiusCsvFileName
+        << "\n";
+}

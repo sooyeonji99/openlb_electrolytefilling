@@ -1,44 +1,36 @@
+
 #ifndef GEOMETRY_H
 #define GEOMETRY_H
 
 #include <vector>
 
-
 // ============================================================
-// Particle structure
+// Solid circular particle
 // ============================================================
 
 struct Particle2D
 {
-    double x;
-    double y;
-    double radius;
+    double x;       // [m]
+    double y;       // [m]
+    double radius;  // [m]
 };
 
-
-// ============================================================
-// Particle generation
-// ============================================================
-
-std::vector<Particle2D>
-generateParticles();
-
+// Generate random solid circular particles
+std::vector<Particle2D> generateParticles();
 
 // ============================================================
 // Custom material grid
 //
-// pore  = 0
-// solid = 1
+// 0 = pore (outside circles)
+// 1 = solid (inside circles)
 // ============================================================
 
-std::vector<int>
-buildMaterialGrid(
+std::vector<int> buildMaterialGrid(
     const std::vector<Particle2D>& particles
 );
 
-
 // ============================================================
-// Particle statistics
+// Circle radius statistics
 // ============================================================
 
 double calculateAverageParticleRadius(
@@ -52,6 +44,5 @@ double calculateMinimumParticleRadius(
 double calculateMaximumParticleRadius(
     const std::vector<Particle2D>& particles
 );
-
 
 #endif

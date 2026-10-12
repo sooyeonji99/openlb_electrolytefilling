@@ -10,6 +10,7 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <cmath>
 
 
 namespace olb
@@ -85,11 +86,14 @@ public:
         // Reject coordinates outside the domain
         // ----------------------------------------------------
 
+        // Extending the lattice below y=0 introduces round-off at electrode
+        // grid lines. Snap only within a tiny tolerance (1e-7 grid spacing).
+        const T tolerance = static_cast<T>(param::dx * 1.e-7);
         if (
-            x < T(0) ||
-            x > static_cast<T>(param::lx) ||
-            y < T(0) ||
-            y > static_cast<T>(param::ly)
+            x < -tolerance ||
+            x > static_cast<T>(param::lx) + tolerance ||
+            y < -tolerance ||
+            y > static_cast<T>(param::ly) + tolerance
         )
         {
             output[0] = false;
@@ -113,12 +117,12 @@ public:
 
         int i =
             static_cast<int>(
-                x / static_cast<T>(param::dx)
+                std::floor(x / static_cast<T>(param::dx) + T(1.e-7))
             );
 
         int j =
             static_cast<int>(
-                y / static_cast<T>(param::dx)
+                std::floor(y / static_cast<T>(param::dx) + T(1.e-7))
             );
 
 
@@ -174,8 +178,8 @@ public:
 // Prepare OpenLB geometry directly from master material grid
 //
 // OpenLB:
-//   material 1 = solid
-//   material 2 = pore / fluid
+//   material 1 = pore / fluid (outside circles)
+//   material 2 = solid (inside circles)
 // ============================================================
 
 template<typename T>
@@ -195,9 +199,9 @@ void prepareOpenLBGeometry(
 
 
     // ========================================================
-    // 1. Entire OpenLB domain -> fluid
+    // 1. Entire OpenLB domain (electrode + lower reservoir) -> fluid
     //
-    // 0 -> 2
+    // 0 -> 1 (pore / fluid)
     // ========================================================
 
     geometry.rename(
@@ -217,7 +221,7 @@ void prepareOpenLBGeometry(
     // ========================================================
     // 3. Fluid -> solid wherever master grid says solid
     //
-    // 2 -> 1
+    // 1 -> 2 (solid)
     // ========================================================
 
     geometry.rename(
@@ -225,6 +229,26 @@ void prepareOpenLBGeometry(
         param::openlbSolidMaterial,
         solidIndicator
     );
+
+    // One additional lattice layer surrounds the unchanged electrode/reservoir.
+    // Side-wall corners take priority over supply/outlet pressure boundaries.
+    auto& load = geometry.getLoadBalancer();
+    for (int iC = 0; iC < load.size(); ++iC) {
+        auto& block = geometry.getBlockGeometry(iC);
+        block.forSpatialLocations([&](LatticeR<2> r) {
+            const auto p = block.getPhysR(r);
+            if (block.get(r) == param::openlbPoreMaterial) {
+                if (p[0] < -param::dx * 0.5 || p[0] > param::lx + param::dx * 0.5)
+                    block.set(r, param::sideWallMaterial);
+                else if (p[1] < -param::reservoirHeight - param::dx * 0.5)
+                    block.set(r, param::liquidSupplyMaterial);
+                else if (p[1] > param::ly + param::gasBufferHeight + param::dx * 0.5)
+                    block.set(r, param::gasOutletMaterial);
+            }
+        });
+    }
+    geometry.getStatistics().getStatisticsStatus() = true;
+    geometry.communicate();
 
 
     // ========================================================
@@ -273,8 +297,8 @@ void prepareOpenLBGeometry(
 //
 // ParaView output:
 //   0 = outside
-//   1 = solid
-//   2 = pore / fluid
+//   1 = pore / fluid (outside circles)
+//   2 = solid (inside circles)
 // ============================================================
 
 template<typename T>
@@ -365,6 +389,7 @@ void writeOpenLBGeometryVTK(
     );
 
 
+    vtkWriter.createMasterFile();
     vtkWriter.write(0);
 
 

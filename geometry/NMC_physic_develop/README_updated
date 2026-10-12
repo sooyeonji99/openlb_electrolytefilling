@@ -1,0 +1,188 @@
+# NMC electrolyte filling — Step 5
+
+## 현재 구현
+
+기존 원형 입자 전극 생성과 공극 분석을 유지하고, OpenLB 계산 영역의
+아래쪽에 전해액 reservoir를 추가했습니다. Step 4에서는 표면장력·젖음·외곽 경계를 구성하고 초기 모세관 힘을 계산합니다. Step 5에서 시간 적분과 시간별 VTM 출력을 추가했습니다.
+
+| 구분 | 영역/값 |
+|---|---|
+| 기존 전극 | x = 0–100 μm, y = 0–100 μm |
+| 하단 reservoir | x = 0–100 μm, y = -20–0 μm |
+| 사용자 격자 | 0 = 공극, 1 = 원형 고체 |
+| OpenLB material | 0 = 외부, 1 = 공극/유체(reservoir 포함), 2 = 원형 고체 |
+| 상장 변수 phi | 0 = 기체, 1 = 액체, 중간값 = 확산 계면 |
+
+입자 위치·반경·생성 seed 및 기존 전극의 격자 공극률은 변경하지 않았습니다.
+공극 분석과 cathode_geometry.vtk는 기존 전극만 대상으로 합니다.
+고체 원 반경은 circle_radius_distribution.csv로 출력합니다.
+reservoir 확장으로 원점이 음수가 되므로, 전극 격자 경계의 부동소수점
+오차를 dx의 1e-7 이내에서 보정합니다. 셀 중심 정의는 기존대로 유지합니다.
+
+## 다상 격자
+
+multiphase.h에서 같은 SuperGeometry를 사용하는 두 D2Q9 격자를 구성합니다.
+
+- NS: MultiPhaseIncompressibleBGKdynamics
+- CH: WellBalancedCahnHilliardBGKdynamics
+- 결합: WellBalancedCahnHilliardPostProcessor<LinearTauViscosity>
+
+bulk dynamics와 결합은 material 1에만 적용합니다. 고체 material 2와
+외부 material 0에는 NoDynamics를 적용합니다. 액체/기체용 material을
+추가하지 않습니다.
+
+## 초기 조건
+
+parameters.h의 reservoirHeight, initialInterfaceY, initialInterfaceWidth로
+reservoir 크기와 초기 계면 위치·평활화 폭을 설정합니다.
+
+phi(y) = 0.5 * (1 - tanh(2 * (y - initialInterfaceY) / initialInterfaceWidth))
+
+기본값은 전극 입구의 계면 중심 y = 0 μm, 초기 평활화 폭 = 0.4 μm입니다.
+reservoir 아래쪽은 액체, 전극 내부는 거의 기체입니다. tanh 계면이므로
+전극 하단 공극에는 초기 액체 값이 있으며, 엄밀히 0으로 절단하지 않습니다.
+계면을 입구에 배치하여 전극과 액체 사이에 초기 기체 간격이 생기지 않게 합니다.
+계면 위치는 침투 시작 전의 초기 배치이며 유동 결과가 아닙니다.
+
+공극에서 CH 분포함수와 STATISTIC/PHIWETTING을 phi로 설정하고,
+NS 압력과 초기 속도·힘은 0으로 설정합니다. 혼합 밀도와 TAU_EFF는
+phi로 보간합니다. 고체/외부의 phi와 밀도 출력값 0은 상 분류에 사용하지 않습니다.
+
+LatticeSetup의 밀도·완화시간은 아래 Step 4 임시 물성을 격자 단위로 변환합니다.
+rho_lattice는 실제 kg/m³ 밀도가 아닙니다. 초기 평활화 폭은 Step 4의
+계면 두께와 일치시키고 수치 해상도를 검토해야 합니다.
+
+## 빌드와 시각화
+
+설치된 /home/soooo/OpenLB/olb-release를 사용합니다.
+
+```bash
+make onlysample
+./main
+```
+
+ParaView에서 tmp/vtkData/initial_phases.pvd를 열고 Apply를 누릅니다.
+같은 출력에 material, phi, rho_lattice가 포함됩니다.
+Threshold로 material = 1만 남긴 뒤 phi를 0–1 범위로 색칠하세요.
+그러면 고체를 기체로 오인하지 않고 reservoir·기체·계면을 확인할 수 있습니다.
+고체와 공극 전체 형상은 tmp/vtkData/openlb_geometry.pvd에서 확인합니다.
+
+## 다음 단계와 제한
+
+reservoir 하단에는 고정 액체 상/압력 경계를 구성했습니다. 시간 적분 중 이 경계조건을 사용합니다.
+Step 4에서 물리 단위 변환, 표면장력, 접촉각과 벽·공급/배출 경계를 구성했습니다. 중력·진동은 이후 단계에서 구성합니다.
+
+Step 4에서는 초기화와 화학 퍼텐셜·결합을 실행하고, Step 5에서는 collideAndStream()을 포함한 시간 루프를 실행합니다. 초기 chemical potential과 계면 가속도는 capillary_setup.pvd로 확인합니다.
+
+## Step 3 검증
+
+컴파일·링크와 전체 크기 실행을 확인했습니다. 출력 VTI를 읽어 reservoir가
+전부 material 1인지, 전극 재료가 master grid와 일치하는지, phi가 초기
+해석식과 일치하는지 검사했습니다. 재료 불일치는 0, phi 최대 오차는
+Float32 출력 기준 2.8e-8입니다. 기존 전극 VTK와 고체 반경 CSV도 Step 2와
+동일했습니다. 별도 검증 결과는 /tmp/nmc_step3_run에 저장했습니다.
+
+## Step 4: 임시 물성과 경계
+
+사용자가 승인한 수치 검증용 값이며 실제 전해액/공기의 물성이 아닙니다.
+
+| 항목 | 값 |
+|---|---:|
+| 액체/기체 밀도 | 1000 / 100 kg/m³ (밀도비 10) |
+| 액체/기체 동점도 | 각 1e-6 m²/s |
+| 시간 간격 | 1e-9 s |
+| 표면장력 | 1e-3 N/m |
+| 액체 쪽 목표 접촉각 | 60° |
+| 계면 두께 | 4 dx |
+| CH 완화시간 | 1 |
+
+이 설정에서 격자 액체/기체 밀도는 1 / 0.1, NS 완화시간은 각 0.8입니다.
+UnitConverter로 표면장력을 변환합니다. 실제 물성 적용 시 안정성과
+해상도·계면 두께를 다시 검증해야 합니다.
+
+기존 전극 위에 10 μm 기체 buffer를 추가해 고체 입자와 배출 경계를 분리합니다.
+외곽에 한 격자층을 추가하며 기존 전극/공극 material 1과 고체 2는 유지합니다.
+material 3 = 하단 액체 공급, 4 = 상단 기체 bath/배출, 5 = 좌우 벽입니다.
+3/4는 액체/기체 자체의 geometry 표지가 아닌 외곽 경계 역할입니다.
+
+NS 공급/배출은 IncompressibleZouHePressure로 같은 hydrodynamic pressure=0을
+설정합니다. CH는 WellBalancedCahnHilliardBGKdynamics를 mixin으로 사용하는
+RegularizedTemperature 경계로 하단 phi=1, 상단 phi=0을 설정합니다.
+상단은 고정 기체 bath이며, 액체까지 자유롭게 통과시키는 일반 convective
+출구는 아닙니다. 이후 침투/배출 계산에서 경계 반사와 유량을 검증해야 합니다.
+
+NS/CH 벽 반사는 설치된 setBouzidiBoundary와 q=0.5 half-way 링크를 사용합니다.
+현재 raster 형상에 맞춘 경계이며 실제 원 표면까지의 sub-grid 거리는 쓰지 않습니다.
+접촉각은 설치된 WellBalancedWallProcessor2D로 고체 표면에 적용합니다.
+원형 입자와 좌우 벽은 같은 접촉각을 사용합니다. 내부 고체는 제외합니다.
+유효 법선이 없는 작은 입자/복잡한 모서리는 실제 인접 유체 방향으로 법선을
+대체하며 개수를 출력합니다. 이 대체는 해상도에 따른 근사이므로 접촉각
+정확도와 방향 의존성 검증을 이후 수행해야 합니다.
+
+ChemPotentialPhaseFieldProcessor와 WellBalancedCahnHilliardPostProcessor로
+초기 chemical potential과 -phi grad(mu) 계면 힘을 계산합니다.
+중력/진동 힘은 0입니다. capillary_setup.pvd에는 material, phi,
+chemical_potential, acceleration_lattice가 포함됩니다. acceleration_lattice는
+물리 단위 힘 밀도가 아닌 격자 가속도입니다. 고체 값은 분석에서 제외하세요.
+
+ParaView에서 tmp/vtkData/capillary_setup.pvd를 열고 material=1로 Threshold한
+뒤 chemical_potential 또는 acceleration_lattice의 Magnitude로 색칠합니다.
+이는 초기 계면 힘이며, 접촉각 평형이나 침투 시간 계산 결과는 아닙니다.
+
+## Step 4 검증 결과
+
+전체 크기 빌드/실행 및 초기 출력의 유한성 검사가 통과했습니다.
+공극 phi는 0–1 범위이며, 원본 전극 격자와 재료 불일치는 0입니다.
+외부 material 0과 bulk material 1의 인접 오류도 해소했습니다.
+139352개 벽 표면 셀 중 5589개는 법선 대체를 사용합니다.
+공극의 최대 |mu| = 0.00116736, 최대 계면 가속도 크기 = 0.00050331
+(격자 단위)입니다. 입자 생성 VTK와 반경 CSV는 Step 3과 동일합니다.
+이는 초기 구성 검증이며, 접촉각 측정 및 시간 적분 안정성 검증은 아닙니다.
+별도 검증 로그와 결과: /tmp/nmc_step4_run.
+프로젝트 디렉터리에서도 실행하여 tmp/vtkData에 최신 결과를 생성했습니다.
+
+## Step 5: 시간 적분과 출력
+
+simulation.h는 contactAngle2d의 계산 순서를 사용합니다.
+NS/CH collideAndStream → CH 통신 → 젖음/상장 PreCoupling → 통신 →
+화학 퍼텐셜 계산 → 통신 → NS/CH 결합 순서입니다.
+기존 중력/진동 0과 임시 물성을 유지합니다.
+
+```bash
+make onlysample
+./main --steps 100 --output-every 10
+```
+
+기본값도 100스텝/10스텝 간격입니다. --steps 0은 초기 상태만 출력합니다.
+시간 간격은 1e-9 s이므로 100스텝은 1e-7 s입니다. 짧은 수치 확인용이며
+전극 전체 충전까지 계산한 시간이 아닙니다. 더 긴 계산은 --steps로 설정하세요.
+계산량과 출력 파일 크기는 시간/출력 빈도에 따라 증가합니다.
+
+ParaView에서 tmp/vtkData/electrolyte_filling.pvd를 엽니다.
+Apply → Threshold material=1 → Coloring phi → 0–1 색상 범위로 설정하고
+시간 슬라이더/Play로 계면을 확인합니다. velocity_lattice는 격자 속도,
+chemical_potential은 격자 화학 퍼텐셜입니다. PVD의 timestep은 격자
+스텝 번호이며 물리 시간은 filling_history.csv의 time_s에서 확인합니다.
+
+filling_history.csv는 매 스텝 다음 값을 기록합니다.
+- step, time_s
+- electrode_saturation: y=0–ly의 material 1에서 clamp(phi,0,1)의 평균
+- phi_min, phi_max: 모든 유체 및 공급/배출 셀의 실제 phi 범위
+- max_speed_lattice: 모든 유체 및 공급/배출 셀의 최대 격자 속도
+
+충전율은 연속 상장으로 계산한 액체 비율이며 trapped gas 비율이 아닙니다.
+전체 액체 수지는 개방 경계의 유입/유출을 포함하여 별도로 검증해야 합니다.
+충전율 계산의 clamp는 통계 처리일 뿐 분포함수/phi를 수정하지 않습니다.
+검사는 매 스텝 실행합니다. 비유한 phi/속도/화학 퍼텐셜, phi 범위 -0.1–1.1
+이탈 또는 최대 격자 속도 0.1 초과 시 오류를 출력하고 종료 코드 1로 중단합니다.
+이 검사는 수치 이상 감지이며 물리 정확도나 장시간 안정성의 보증이 아닙니다.
+표면장력/접촉각 정확도, 초기 계면 및 4dx 계면 폭의 영향은 후속 검증 대상입니다.
+
+### Step 5 검증 결과
+
+임시 물성으로 100스텝(0.1 μs)을 실행했습니다. 101개 CSV 행과 11개 VTM
+스냅샷을 확인했고 초기/최종 출력은 모두 유한했습니다. 모든 계산 스텝의
+phi 범위는 0–1, 최대 격자 속도는 0.000570446 이하였습니다.
+전극 충전율은 0.0028636043에서 0.0028654643으로 변했습니다.
+이는 매우 짧은 초기 계산의 수치 확인이며, 전극 전체 침투나 장시간 안정성을
+검증한 결과가 아닙니다. 상세 검증 결과는 /tmp/nmc_step5_run에 있습니다.
