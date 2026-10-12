@@ -1,43 +1,34 @@
+
 #ifndef ANALYSIS_H
 #define ANALYSIS_H
 
 #include <vector>
 
+// ============================================================
+// Pore structure analysis results
+//
+// Circle interior = solid electrode particle
+// Circle exterior = pore / fluid region
+// ============================================================
 
 struct PoreAnalysisResult
 {
-    double porosity;
+    // Fraction of pore cells in total domain
+    double porosity = 0.0;
 
-    bool verticalConnectivity;
+    // Whether pore space connects bottom to top
+    bool verticalConnectivity = false;
 
-    double connectedPoreFraction;
-
-    double meanPoreRadius;
-
-    double maxPoreRadius;
-
-    std::vector<double>
-        poreRadiusValues;
+    // Fraction of pore cells accessible from bottom
+    double connectedPoreFraction = 0.0;
 };
-
 
 // ============================================================
 // Main pore analysis
 // ============================================================
 
-PoreAnalysisResult
-analyzePoreStructure(
+PoreAnalysisResult analyzePoreStructure(
     const std::vector<int>& material
 );
-
-
-// ============================================================
-// CSV output
-// ============================================================
-
-void writePoreRadiusDistributionCSV(
-    const std::vector<double>& poreRadiusValues
-);
-
 
 #endif

@@ -1,3 +1,6 @@
+// electrolyte의 경우 surface tension, contact angle, viscosity 값 필요
+
+
 #ifndef PARAMETERS_H
 #define PARAMETERS_H
 
@@ -12,15 +15,11 @@ namespace param
 // ============================================================
 
 // Electrode dimensions
-constexpr double lx = 100.0e-6;   // [m]
-constexpr double ly = 100.0e-6;   // [m]
+constexpr double lx = 100.0e-6;  // [m]
+constexpr double ly = 100.0e-6;  // [m]
 
 // Spatial resolution
-//
-// 0.1 um resolution:
-// 100 um / 0.1 um = 1000 cells
-//
-constexpr double dx = 0.1e-6;     // [m]
+constexpr double dx = 0.1e-6;    // [m]
 
 // Number of grid cells
 constexpr int nx =
@@ -31,21 +30,20 @@ constexpr int ny =
 
 
 // ============================================================
-// Particle size distribution
+// Particle / circle size distribution
 // ============================================================
 
-// Particle radius range
+// Circle = solid electrode particle
 constexpr double minParticleRadius =
-    1.0e-7;                       // [m] = 0.1 um
+    1.0e-7;                      // [m]
 
 constexpr double maxParticleRadius =
-    10.0e-6;                      // [m] = 10 um
+    10.0e-6;                     // [m]
 
-// Target pore fraction
+// Porosity = area outside circles / total area
 constexpr double targetPorosity =
     0.30;
 
-// Allowed deviation during particle generation
 constexpr double porosityTolerance =
     0.002;
 
@@ -57,15 +55,9 @@ constexpr double porosityTolerance =
 constexpr std::uint32_t randomSeed =
     12345;
 
-// Maximum consecutive failed placement attempts
 constexpr int maxPlacementAttempts =
     2000000;
 
-// Minimum gap between particles
-//
-// 0 = particles may touch
-//     but cannot overlap
-//
 constexpr double minimumParticleGap =
     0.0;
 
@@ -73,7 +65,9 @@ constexpr double minimumParticleGap =
 // ============================================================
 // Custom grid material IDs
 //
-// NOTE:
+// Circle interior = solid
+// Circle exterior = pore
+//
 // These are NOT OpenLB material numbers.
 // ============================================================
 
@@ -86,12 +80,16 @@ constexpr int solidMaterial =
 
 // ============================================================
 // OpenLB material IDs
+//
+// 0 = outside / unassigned
+// 1 = pore / fluid
+// 2 = solid electrode particle
 // ============================================================
 
-constexpr int openlbSolidMaterial =
+constexpr int openlbPoreMaterial =
     1;
 
-constexpr int openlbPoreMaterial =
+constexpr int openlbSolidMaterial =
     2;
 
 
@@ -99,7 +97,6 @@ constexpr int openlbPoreMaterial =
 // Connectivity
 // ============================================================
 
-// Current connectivity analysis:
 // 4-neighbor connectivity
 constexpr bool useDiagonalConnectivity =
     false;
@@ -112,8 +109,9 @@ constexpr bool useDiagonalConnectivity =
 const std::string vtkFileName =
     "cathode_geometry.vtk";
 
-const std::string poreRadiusCsvFileName =
-    "pore_radius_distribution.csv";
+// Distribution of generated solid-circle radii
+const std::string circleRadiusCsvFileName =
+    "circle_radius_distribution.csv";
 
 }
 

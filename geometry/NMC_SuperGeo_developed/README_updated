@@ -12,7 +12,7 @@
 Grid porosity  0.30
 Vertical connectivity  YES
 Connected pore fraction  0.996
-Pore-radius distribution
+Solid-circle radius distribution: circle_radius_distribution.csv
 
 ## OpenLB SuperGeometry
 Material 0  boundary/outside

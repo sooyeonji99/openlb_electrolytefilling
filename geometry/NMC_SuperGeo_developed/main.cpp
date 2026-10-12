@@ -1,50 +1,34 @@
+
+#include "olb2D.h"
+#include "olb2D.hh"
+
 #include "parameters.h"
 #include "geometry.h"
 #include "analysis.h"
 #include "vtk_writer.h"
 #include "openlb_geometry.h"
 
-#include "olb2D.h"
-#include "olb2D.hh"
-
 #include <iostream>
 #include <iomanip>
 
-
 using namespace olb;
 
-
-int main(
-    int argc,
-    char* argv[])
+int main(int argc, char* argv[])
 {
     // ========================================================
     // Initialize OpenLB
     // ========================================================
 
-    initialize(
-        &argc,
-        &argv
-    );
+    initialize(&argc, &argv);
 
+    using T = double;
 
-    using T =
-        double;
-
+    std::cout << std::setprecision(6);
 
     std::cout
-        << std::setprecision(6);
-
-
-    std::cout
-        << "\n======================================\n";
-
-    std::cout
-        << "2D Cathode Random Porous Geometry\n";
-
-    std::cout
+        << "\n======================================\n"
+        << "2D Cathode Random Porous Geometry\n"
         << "======================================\n";
-
 
     // ========================================================
     // Parameters
@@ -55,255 +39,156 @@ int main(
         << param::lx * 1.0e6
         << " x "
         << param::ly * 1.0e6
-        << " um\n";
+        << " um\n"
 
-
-    std::cout
         << "Resolution = "
         << param::dx * 1.0e6
-        << " um\n";
+        << " um\n"
 
-
-    std::cout
         << "Grid = "
         << param::nx
         << " x "
         << param::ny
-        << "\n";
+        << "\n"
 
-
-    std::cout
         << "Target porosity = "
         << param::targetPorosity
-        << "\n";
+        << "\n"
 
-
-    std::cout
-        << "Particle radius = "
-        << param::minParticleRadius
-           * 1.0e6
+        << "Circle radius range = "
+        << param::minParticleRadius * 1.0e6
         << " - "
-        << param::maxParticleRadius
-           * 1.0e6
+        << param::maxParticleRadius * 1.0e6
         << " um\n";
 
-
     // ========================================================
-    // 1. Generate particles
-    // ========================================================
-
-    auto particles =
-        generateParticles();
-
-
-    // ========================================================
-    // 2. Particle statistics
+    // 1. Generate solid circular particles
     // ========================================================
 
-    const double meanParticleRadius =
-        calculateAverageParticleRadius(
-            particles
-        );
+    auto particles = generateParticles();
 
+    // ========================================================
+    // 2. Circle radius statistics
+    // ========================================================
 
-    const double minParticleRadius =
-        calculateMinimumParticleRadius(
-            particles
-        );
+    const double meanCircleRadius =
+        calculateAverageParticleRadius(particles);
 
+    const double minCircleRadius =
+        calculateMinimumParticleRadius(particles);
 
-    const double maxParticleRadius =
-        calculateMaximumParticleRadius(
-            particles
-        );
-
+    const double maxCircleRadius =
+        calculateMaximumParticleRadius(particles);
 
     std::cout
-        << "\n======================================\n";
+        << "\n======================================\n"
+        << "Solid Circle Statistics\n"
+        << "======================================\n"
 
-    std::cout
-        << "Particle Statistics\n";
-
-    std::cout
-        << "======================================\n";
-
-
-    std::cout
-        << "Number of particles = "
+        << "Number of circles = "
         << particles.size()
-        << "\n";
+        << "\n"
 
+        << "Mean circle radius = "
+        << meanCircleRadius * 1.0e6
+        << " um\n"
 
-    std::cout
-        << "Mean particle radius = "
-        << meanParticleRadius
-           * 1.0e6
+        << "Minimum circle radius = "
+        << minCircleRadius * 1.0e6
+        << " um\n"
+
+        << "Maximum circle radius = "
+        << maxCircleRadius * 1.0e6
         << " um\n";
 
-
-    std::cout
-        << "Minimum particle radius = "
-        << minParticleRadius
-           * 1.0e6
-        << " um\n";
-
-
-    std::cout
-        << "Maximum particle radius = "
-        << maxParticleRadius
-           * 1.0e6
-        << " um\n";
-
-
     // ========================================================
-    // 3. Build original material grid
+    // 3. Build custom material grid
+    //
+    // 0 = pore (outside circles)
+    // 1 = solid (inside circles)
     // ========================================================
 
-    auto material =
-        buildMaterialGrid(
-            particles
-        );
-
+    auto material = buildMaterialGrid(particles);
 
     // ========================================================
-    // 4. Analyze original geometry
+    // 4. Analyze pore structure
     // ========================================================
 
-    auto analysis =
-        analyzePoreStructure(
-            material
-        );
-
+    auto analysis = analyzePoreStructure(material);
 
     std::cout
-        << "\n======================================\n";
+        << "\n======================================\n"
+        << "Pore Structure Analysis\n"
+        << "======================================\n"
 
-    std::cout
-        << "Pore Structure Analysis\n";
-
-    std::cout
-        << "======================================\n";
-
-
-    std::cout
         << "Grid porosity = "
         << analysis.porosity
-        << "\n";
+        << "\n"
 
-
-    std::cout
         << "Vertical pore connectivity = "
-        << (
-            analysis.verticalConnectivity
-            ?
-            "YES"
-            :
-            "NO"
-        )
-        << "\n";
+        << (analysis.verticalConnectivity ? "YES" : "NO")
+        << "\n"
 
-
-    std::cout
-        << "Connected pore fraction = "
+        << "Bottom-connected pore fraction = "
         << analysis.connectedPoreFraction
         << "\n";
 
-
-    std::cout
-        << "Mean pore radius = "
-        << analysis.meanPoreRadius
-           * 1.0e6
-        << " um\n";
-
-
-    std::cout
-        << "Maximum pore radius = "
-        << analysis.maxPoreRadius
-           * 1.0e6
-        << " um\n";
-
-
     // ========================================================
-    // 5. Existing VTK / CSV output
+    // 5. VTK / CSV output
     // ========================================================
 
-    writeGeometryVTK(
-        material
-    );
+    writeGeometryVTK(material);
 
-
-    writePoreRadiusDistributionCSV(
-        analysis.poreRadiusValues
-    );
-
+    writeCircleRadiusDistributionCSV(particles);
 
     // ========================================================
     // 6. Create OpenLB computational domain
     // ========================================================
 
     std::cout
-        << "\n======================================\n";
-
-    std::cout
-        << "Creating OpenLB SuperGeometry\n";
-
-    std::cout
+        << "\n======================================\n"
+        << "Creating OpenLB SuperGeometry\n"
         << "======================================\n";
 
-
     Vector<T,2> extend {
-        static_cast<T>(
-            param::lx
-        ),
-
-        static_cast<T>(
-            param::ly
-        )
+        static_cast<T>(param::lx),
+        static_cast<T>(param::ly)
     };
-
 
     Vector<T,2> origin {
         T(0),
         T(0)
     };
 
-
     IndicatorCuboid2D<T> cuboid(
         extend,
         origin
     );
 
+    const int noOfCuboids = 1;
 
-    // Single CPU / single cuboid for now
-    const int noOfCuboids =
-        1;
+    CuboidDecomposition2D<T> cuboidDecomposition(
+        cuboid,
+        static_cast<T>(param::dx),
+        noOfCuboids
+    );
 
+    HeuristicLoadBalancer<T> loadBalancer(
+        cuboidDecomposition
+    );
 
-    CuboidDecomposition2D<T>
-        cuboidDecomposition(
-            cuboid,
-            static_cast<T>(
-                param::dx
-            ),
-            noOfCuboids
-        );
-
-
-    HeuristicLoadBalancer<T>
-        loadBalancer(
-            cuboidDecomposition
-        );
-
-
-    SuperGeometry<T,2>
-        superGeometry(
-            cuboidDecomposition,
-            loadBalancer
-        );
-
+    SuperGeometry<T,2> superGeometry(
+        cuboidDecomposition,
+        loadBalancer
+    );
 
     // ========================================================
-    // 7. Particle2D -> OpenLB material geometry
+    // 7. Map custom grid to OpenLB SuperGeometry
+    //
+    // OpenLB:
+    // 0 = outside
+    // 1 = pore / fluid
+    // 2 = solid particle
     // ========================================================
 
     prepareOpenLBGeometry(
@@ -311,35 +196,18 @@ int main(
         material
     );
 
+    // ========================================================
+    // 8. OpenLB-native VTM output
+    // ========================================================
+
     writeOpenLBGeometryVTK(
         superGeometry
     );
-    // ========================================================
-    // 8. Print OpenLB geometry information
-    // ========================================================
-
-    // std::cout
-    //     << "\n======================================\n";
-
-    // std::cout
-    //     << "OpenLB Geometry Statistics\n";
-
-    // std::cout
-    //     << "======================================\n";
-
-
-    // superGeometry.print();
-
 
     std::cout
-        << "\n======================================\n";
-
-    std::cout
-        << "Geometry preprocessing completed.\n";
-
-    std::cout
+        << "\n======================================\n"
+        << "Geometry preprocessing completed.\n"
         << "======================================\n";
-
 
     return 0;
 }

@@ -174,8 +174,8 @@ public:
 // Prepare OpenLB geometry directly from master material grid
 //
 // OpenLB:
-//   material 1 = solid
-//   material 2 = pore / fluid
+//   material 1 = pore / fluid (outside circles)
+//   material 2 = solid (inside circles)
 // ============================================================
 
 template<typename T>
@@ -197,7 +197,7 @@ void prepareOpenLBGeometry(
     // ========================================================
     // 1. Entire OpenLB domain -> fluid
     //
-    // 0 -> 2
+    // 0 -> 1 (pore / fluid)
     // ========================================================
 
     geometry.rename(
@@ -217,7 +217,7 @@ void prepareOpenLBGeometry(
     // ========================================================
     // 3. Fluid -> solid wherever master grid says solid
     //
-    // 2 -> 1
+    // 1 -> 2 (solid)
     // ========================================================
 
     geometry.rename(
@@ -273,8 +273,8 @@ void prepareOpenLBGeometry(
 //
 // ParaView output:
 //   0 = outside
-//   1 = solid
-//   2 = pore / fluid
+//   1 = pore / fluid (outside circles)
+//   2 = solid (inside circles)
 // ============================================================
 
 template<typename T>
