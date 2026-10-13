@@ -2,5 +2,7 @@
 <VTKFile type="Collection" version="0.1" byte_order="LittleEndian">
 <Collection>
 <DataSet timestep="0" group="" part="" file="data/electrolyte_filling_iT0000000.vtm"/>
+<DataSet timestep="50000" group="" part="" file="data/electrolyte_filling_iT0050000.vtm"/>
+<DataSet timestep="100000" group="" part="" file="data/electrolyte_filling_iT0100000.vtm"/>
 </Collection>
 </VTKFile>
