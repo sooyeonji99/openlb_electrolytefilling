@@ -47,8 +47,9 @@ python3 analyze.py
 - `results/multiphase_smoke/multiphase_diagnostics.csv`: OpenLB 시간 이력
 - `results/multiphase_smoke/multiphase_validation.csv`: multiphase PASS/FAIL
 
-VTK material 번호는 0=부채꼴 외부, 1=초기 electrolyte, 2=pore,
-3=solid입니다.
+형상 검증 VTK의 material 번호는 0=부채꼴 외부, 1=초기 electrolyte,
+2=pore, 3=solid입니다. OpenLB multiphase VTK에서는 0=외부, 1=pore,
+2=solid, 3=가압 electrolyte reservoir를 사용합니다.
 
 ## 현재 검증 결과
 
@@ -101,6 +102,22 @@ Liang coupling, incompressible BGK 조합을 같은 8.6 mm 부채꼴에 적용�
 NS/phase-field coupling과 출력이 실제 OpenLB에서 작동한다는 통합 smoke
 검증입니다. 정량적인 실제 NMC 침투 계산은 입도분포와 공급 경계가 확정된 뒤
 RVE 또는 공극 평균화 전략으로 구성해야 합니다.
+
+중심 electrolyte 영역에 지속 압력을 주어 주입을 모사하려면 다음과 같이
+`--reservoir-pressure-pa`를 지정합니다. 10 Pa부터 시작해 안정성과 pore 액상
+분율을 확인한 뒤 압력을 올립니다.
+
+```bash
+mpirun -np 2 ./multiphase_smoke --dx-um 5 \
+  --reservoir-pressure-pa 10 --steps 40000 \
+  --diagnostic-every 400 --output-every 4000 \
+  --output results/pressure_10Pa_0p1s
+```
+
+중심 reservoir는 material 3이며 지정 압력과 `phi=1`을 매 스텝 유지합니다.
+CSV의 `pore_mean_phi`는 material 1에서만 계산되므로 증가량이 실제 pore 침투
+지표입니다. 현재 외곽은 닫힌 벽이므로 장시간에는 포획 기체 압축으로 침투가
+정지할 수 있습니다. 지속 주입 문제에는 별도의 gas vent 경계 검증이 필요합니다.
 
 ## 권장 계산 구성
 

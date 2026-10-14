@@ -24,6 +24,7 @@ struct Options {
   T radius=4.3e-3, electrolyteRadius=.8925e-3, dx=5e-6;
   T porosity=.30, pitch=50e-6, tau=.8, nu=1e-6, rhoL=1000, rhoG=100;
   T sigma=1e-5, theta=60, width=4;
+  T reservoirPressure=0;
   long steps=200, outputEvery=200, diagnosticEvery=10;
   std::string output="results/multiphase_smoke";
 };
@@ -34,6 +35,7 @@ Options parse(int argc,char**argv) {
     if (i+1>=argc) throw std::runtime_error("missing option value");
     std::string key=argv[i],value=argv[++i];
     if(key=="--dx-um")o.dx=std::stod(value)*1e-6;
+    else if(key=="--reservoir-pressure-pa")o.reservoirPressure=std::stod(value);
     else if(key=="--steps")o.steps=std::stol(value);
     else if(key=="--output-every")o.outputEvery=std::stol(value);
     else if(key=="--diagnostic-every")o.diagnosticEvery=std::stol(value);
@@ -62,7 +64,8 @@ public:
   bool operator()(T out[],const int p[]) override {
     auto& load=_lattice.getLoadBalancer();
     if(!load.isLocal(p[0]))return false;
-    if(_geometry.getBlockGeometry(load.loc(p[0])).get(p[1],p[2])!=1) {
+    const int material=_geometry.getBlockGeometry(load.loc(p[0])).get(p[1],p[2]);
+    if(material!=1 && material!=3) {
       out[0]=std::numeric_limits<T>::quiet_NaN();
       return true;
     }
@@ -107,6 +110,7 @@ int main(int argc,char**argv) {
     int material=1;
     if(radius>o.radius)material=0;
     else if(p[0]<1.51*o.dx||p[1]<1.51*o.dx||radius>o.radius-1.51*o.dx)material=2;
+    else if(radius<o.electrolyteRadius)material=3;
     else if(radius>o.electrolyteRadius) {
       const T cx=(std::floor(p[0]/o.pitch)+.5)*o.pitch;
       const T cy=(std::floor(p[1]/o.pitch)+.5)*o.pitch;
@@ -124,8 +128,9 @@ int main(int argc,char**argv) {
   ch.setUnitConverter(ns.getUnitConverter()); const auto& converter=ns.getUnitConverter();
   const T sigmaLattice=o.sigma/converter.getConversionFactorSurfaceTension();
   const T rhoRatio=o.rhoG/o.rhoL;
-  auto fluid=geometry.getMaterialIndicator(1),wall=geometry.getMaterialIndicator(2);
-  auto all=geometry.getMaterialIndicator({0,1,2});
+  auto pore=geometry.getMaterialIndicator(1),wall=geometry.getMaterialIndicator(2);
+  auto reservoir=geometry.getMaterialIndicator(3),fluid=geometry.getMaterialIndicator({1,3});
+  auto all=geometry.getMaterialIndicator({0,1,2,3});
   dynamics::set<MultiPhaseIncompressibleBGKdynamics<T,NSD>>(ns,fluid);
   dynamics::set<ConservativePhaseFieldBGKdynamics<T,CHD>>(ch,fluid);
   boundary::set<boundary::BounceBackIncompressible>(ns,wall);
@@ -142,6 +147,7 @@ int main(int argc,char**argv) {
 
   RadialPhase phase(o.electrolyteRadius,o.width*o.dx);
   AnalyticalConst2D<T,T> zero(0),one(1),two(2),velocity(Vector<T,2>{0,0});
+  AnalyticalConst2D<T,T> reservoirPressure(o.reservoirPressure);
   AnalyticalConst2D<T,T> rhoGas(rhoRatio),rhoDifference(1-rhoRatio),tauGas(.53),tauDifference(o.tau-.53);
   AnalyticalIdentity2D<T,T> rho(rhoGas+rhoDifference*phase),tau(tauGas+tauDifference*phase);
   fields::set<RHO>(ns,all,rho);fields::set<TAU_EFF>(ns,all,tau);
@@ -152,6 +158,8 @@ int main(int argc,char**argv) {
   momenta::setOrderParameter(ch,all,phase);momenta::setIncompressiblePressure(ns,all,zero);
   momenta::setVelocity(ns,all,velocity);ns.iniEquilibrium(all,zero,velocity);ch.iniEquilibrium(all,phase,velocity);
   ns.initialize();ch.initialize();ch.iniEquilibrium(all,phase,velocity);ns.iniEquilibrium(all,zero,velocity);
+  momenta::setIncompressiblePressure(ns,reservoir,reservoirPressure);
+  momenta::setOrderParameter(ch,reservoir,one);
   communicator.communicate();ns.setProcessingContext(ProcessingContext::Simulation);ch.setProcessingContext(ProcessingContext::Simulation);
   ch.executePostProcessors(stage::PreCoupling());
   communicator.communicate();
@@ -160,23 +168,23 @@ int main(int argc,char**argv) {
   std::ofstream csv;
   if(isMain) {
     csv.open(o.output+"/multiphase_diagnostics.csv");
-    csv<<std::setprecision(17)<<"step,time_s,mean_phi,min_phi,max_phi,max_speed_lattice,finite\n";
+    csv<<std::setprecision(17)<<"step,time_s,reservoir_pressure_pa,pore_mean_phi,min_phi,max_phi,max_speed_lattice,finite\n";
   }
   Phi phi(ch,geometry);SuperLatticePhysVelocity2D<T,NSD> physVelocity(ns,converter);physVelocity.getName()="velocity_phys_m_s";
   SuperGeometryF<T,2> material(geometry);material.getName()="material";
   SuperVTMwriter2D<T> writer("nmc_timecost_multiphase");writer.addFunctor(material);writer.addFunctor(phi);writer.addFunctor(physVelocity);writer.createMasterFile();
   bool finite=true;
   for(long step=0;step<=o.steps;++step){
-    if(step){ns.collideAndStream();ch.collideAndStream();communicator.communicate();ch.executePostProcessors(stage::PreCoupling());communicator.communicate();coupling.apply();}
-    if(step%o.diagnosticEvery==0||step==o.steps){auto s=sample(geometry,ch);T u=ns.getStatistics().getMaxU();bool ok=std::isfinite(s.mean)&&std::isfinite(s.minimum)&&std::isfinite(s.maximum)&&std::isfinite(u);finite&=ok;if(isMain)csv<<step<<','<<converter.getPhysTime(step)<<','<<s.mean<<','<<s.minimum<<','<<s.maximum<<','<<u<<','<<ok<<'\n';}
+    if(step){momenta::setIncompressiblePressure(ns,reservoir,reservoirPressure);momenta::setOrderParameter(ch,reservoir,one);ns.collideAndStream();ch.collideAndStream();communicator.communicate();ch.executePostProcessors(stage::PreCoupling());communicator.communicate();coupling.apply();}
+    if(step%o.diagnosticEvery==0||step==o.steps){auto s=sample(geometry,ch);T u=ns.getStatistics().getMaxU();bool ok=std::isfinite(s.mean)&&std::isfinite(s.minimum)&&std::isfinite(s.maximum)&&std::isfinite(u);finite&=ok;if(isMain)csv<<step<<','<<converter.getPhysTime(step)<<','<<o.reservoirPressure<<','<<s.mean<<','<<s.minimum<<','<<s.maximum<<','<<u<<','<<ok<<'\n';}
     if(step%o.outputEvery==0||step==o.steps)writer.write(static_cast<int>(step));
   }
   auto final=sample(geometry,ch);
   const bool pass=finite&&final.minimum>=-.1&&final.maximum<=1.1&&ns.getStatistics().getMaxU()<.1;
   if(isMain) {
     std::ofstream result(o.output+"/multiphase_validation.csv");
-    result<<"status,dx_m,dt_s,steps,physical_time_s,mean_phi,min_phi,max_phi,max_speed_lattice\n"
-          <<(pass?"PASS":"FAIL")<<','<<o.dx<<','<<converter.getPhysDeltaT()<<','<<o.steps<<','<<converter.getPhysTime(o.steps)<<','<<final.mean<<','<<final.minimum<<','<<final.maximum<<','<<ns.getStatistics().getMaxU()<<'\n';
+    result<<"status,dx_m,dt_s,steps,physical_time_s,reservoir_pressure_pa,pore_mean_phi,min_phi,max_phi,max_speed_lattice\n"
+          <<(pass?"PASS":"FAIL")<<','<<o.dx<<','<<converter.getPhysDeltaT()<<','<<o.steps<<','<<converter.getPhysTime(o.steps)<<','<<o.reservoirPressure<<','<<final.mean<<','<<final.minimum<<','<<final.maximum<<','<<ns.getStatistics().getMaxU()<<'\n';
     std::cout<<"multiphase_status="<<(pass?"PASS":"FAIL")<<" mean_phi="<<final.mean<<" phi_range=["<<final.minimum<<','<<final.maximum<<"] max_u="<<ns.getStatistics().getMaxU()<<'\n';
   }
   return pass?0:2;
