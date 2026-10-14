@@ -1,0 +1,2 @@
+outer_radius_m,electrolyte_radius_m,dx_m,nx,ny,outer_cells,electrolyte_cells,pore_cells,solid_cells,outer_area_relative_error,electrolyte_area_relative_error,annulus_porosity,target_porosity,connected_pore_fraction,reaches_outer_arc
+0.0043,0.00089249999999999996,4.9999999999999996e-06,862,862,581719,25209,172944,383566,0.0014435299131880875,0.007370655971524729,0.31076530520565671,0.29999999999999999,0.9999537422518272,1
