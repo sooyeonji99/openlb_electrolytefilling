@@ -1,0 +1,2 @@
+throat_gap_m,theta_deg,dx_m,dt_s,sigma_N_m,threshold_Pa,applied_pressure_Pa,pressure_factor
+1.2e-05,60,1.9999999999999999e-06,4.0000000000000009e-07,0.0001,8.3333333333333357,10.833333333333337,1.3
