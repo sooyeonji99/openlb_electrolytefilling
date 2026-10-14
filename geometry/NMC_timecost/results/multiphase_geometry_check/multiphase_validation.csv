@@ -1,0 +1,2 @@
+status,dx_m,dt_s,steps,physical_time_s,mean_phi,min_phi,max_phi,max_speed_lattice
+PASS,5e-06,2.5e-06,20,5e-05,0.125016,3.33067e-16,1.00039,0.000608121

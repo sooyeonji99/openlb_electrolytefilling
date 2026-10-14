@@ -1,0 +1,30 @@
+
+    ┃
+    ┃  ┏━━━━┓      ▁▁▁▁                   ▁▁    ▁▁▁▁
+    ┃  ┃    ┃     ╱ ▁▁ ╲▁▁▁▁  ▁▁▁  ▁▁▁▁  ╱ ╱   ╱ ▁▁ ╲
+ ┏━━╋━┓┃    ┃    ╱ ╱ ╱ ╱ ▁▁ ╲╱ ▁ ╲╱ ▁▁ ╲╱ ╱   ╱ ╱▁╱ ╱
+ ┃  ┗━╋╋━━━━┻┓  ╱ ╱▁╱ ╱ ╱▁╱ ╱  ▁▁╱ ╱ ╱ ╱ ╱▁▁▁╱ ╱▁╱ ╱
+ ┃    ┃┃     ┃  ╲▁▁▁▁╱ ▁▁▁▁╱╲▁▁▁╱▁╱ ╱▁╱▁▁▁▁▁╱▁▁▁▁▁╱
+ ┗━━━━┛┃     ┃      ╱▁╱ ==========================>>
+       ┗━━━━━┛
+
+[initialize] Version  : NMC_timecost
+[initialize] Platform : CPU_SISD
+[initialize] Parallel : None
+[ThreadPool] Sucessfully initialized, numThreads=1
+[SuperGeometryStatistics2D] updated
+[SuperGeometry2D] the model is correct!
+[CuboidDecomposition] -- Cuboid Structure Statistics --
+[CuboidDecomposition]  Number of Cuboids: 	1
+[CuboidDecomposition]  Delta       : 		5e-06
+[CuboidDecomposition]  Ratio  (min): 		1
+[CuboidDecomposition]         (max): 		1
+[CuboidDecomposition]  Nodes  (min): 		741321
+[CuboidDecomposition]         (max): 		741321
+[CuboidDecomposition]  Weight (min): 		741321
+[CuboidDecomposition]         (max): 		741321
+[CuboidDecomposition] ---------------------------------
+[SuperGeometryStatistics2D] materialNumber=0; count=159602; minPhysR=(5e-06,5e-06); maxPhysR=(0.0043,0.0043)
+[SuperGeometryStatistics2D] materialNumber=1; count=194807; minPhysR=(1e-05,1e-05); maxPhysR=(0.00429,0.00429)
+[SuperGeometryStatistics2D] materialNumber=2; count=386912; minPhysR=(0,0); maxPhysR=(0.0043,0.0043)
+multiphase_status=PASS mean_phi=0.125002 phi_range=[3.33067e-16,1.00002] max_u=0.000609472
