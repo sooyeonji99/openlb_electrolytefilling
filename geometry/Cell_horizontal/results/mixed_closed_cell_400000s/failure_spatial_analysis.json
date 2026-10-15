@@ -1,0 +1,66 @@
+[
+  {
+    "step": 18000,
+    "max_snapshot_speed_m_s": 0.19070731099364926,
+    "speed_lattice": 0.009535365549682463,
+    "x_mm": 2.7950000000000004,
+    "y_mm": 0.6600000000000001,
+    "phi_at_peak": 0.002171753440052271,
+    "pressure_at_peak_Pa": 812.5975341796875,
+    "nearest_surface_distances_um": [
+      5.354948569035796,
+      9.136750396115527
+    ],
+    "nearest_pair_gap_um": 9.999999352427889,
+    "fluid_nodes_above_lattice_0p1": 0,
+    "fluid_nodes_above_lattice_0p3": 0
+  },
+  {
+    "step": 20000,
+    "max_snapshot_speed_m_s": 0.14540753271220508,
+    "speed_lattice": 0.007270376635610254,
+    "x_mm": 2.805,
+    "y_mm": 0.67,
+    "phi_at_peak": 0.0015641961945220828,
+    "pressure_at_peak_Pa": 774.0791625976562,
+    "nearest_surface_distances_um": [
+      8.678719893425932,
+      14.363717078785847
+    ],
+    "nearest_pair_gap_um": 9.999999352427889,
+    "fluid_nodes_above_lattice_0p1": 0,
+    "fluid_nodes_above_lattice_0p3": 0
+  },
+  {
+    "step": 22000,
+    "max_snapshot_speed_m_s": 2.1313134888258087,
+    "speed_lattice": 0.10656567444129043,
+    "x_mm": 2.7800000000000002,
+    "y_mm": 0.935,
+    "phi_at_peak": 0.02780964970588684,
+    "pressure_at_peak_Pa": 5374.54833984375,
+    "nearest_surface_distances_um": [
+      15.469384365881893,
+      24.54245134399548
+    ],
+    "nearest_pair_gap_um": 37.757634793210904,
+    "fluid_nodes_above_lattice_0p1": 1,
+    "fluid_nodes_above_lattice_0p3": 0
+  },
+  {
+    "step": 22046,
+    "max_snapshot_speed_m_s": 5.079316129657436,
+    "speed_lattice": 0.2539658064828718,
+    "x_mm": 2.7900000000000005,
+    "y_mm": 0.93,
+    "phi_at_peak": 0.005590375512838364,
+    "pressure_at_peak_Pa": 417.0968017578125,
+    "nearest_surface_distances_um": [
+      5.19654692800249,
+      33.30772467953309
+    ],
+    "nearest_pair_gap_um": 37.757634793210904,
+    "fluid_nodes_above_lattice_0p1": 13,
+    "fluid_nodes_above_lattice_0p3": 0
+  }
+]

@@ -1,0 +1,2 @@
+status,dx_m,dt_s,steps,physical_time_s,reservoir_pressure_pa,pore_mean_phi,min_phi,max_phi,max_speed_lattice
+FAIL,5e-06,2.5e-07,2830,0.0007075,0,0.0130268,-0.558989,1.01193,15.5816

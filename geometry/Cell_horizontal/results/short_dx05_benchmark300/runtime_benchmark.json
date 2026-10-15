@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/home/soooo/OpenLB/release/openlb_electrolytefilling/geometry/Cell_horizontal/main",
+    "--dx-um",
+    "5",
+    "--steps",
+    "300",
+    "--diagnostic-every",
+    "1",
+    "--output-every",
+    "300",
+    "--output",
+    "/home/soooo/OpenLB/release/openlb_electrolytefilling/geometry/Cell_horizontal/results/short_dx05_benchmark300"
+  ],
+  "returncode": 0,
+  "benchmark_steps": 300,
+  "total_wall_seconds_including_initialization_and_vtk": 12.83175812799982,
+  "timed_first_step": 20,
+  "timed_last_step": 279,
+  "seconds_per_step": 0.03731144038223977,
+  "steps_per_second": 26.801431136279575,
+  "estimated_30000_compute_seconds": 1119.343211467193,
+  "estimated_30000_compute_hours": 0.3109286698519981,
+  "conditions": "one solver process, explicit dx=5um, per-step diagnostics; output cost excluded from throughput; not a stability prediction"
+}

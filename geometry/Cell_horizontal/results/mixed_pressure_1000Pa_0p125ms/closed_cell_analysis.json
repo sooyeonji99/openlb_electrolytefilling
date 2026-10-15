@@ -1,0 +1,43 @@
+{
+  "geometry_version": "random_mixed_disks_v2",
+  "status": "NOT_YET_DEMONSTRATED",
+  "numerical_checks_pass": true,
+  "last_step": 500,
+  "time_s": 0.00012500000000000014,
+  "initial_saturation_raw": 0.0010665637926647752,
+  "final_saturation_raw": 0.00509698238938274,
+  "gas_fraction_raw": 0.9949030176106173,
+  "pore_area_m2": 6.141175000000001e-06,
+  "max_sampled_speed_lattice": 0.03495550538124668,
+  "plateau_window_s": 0.0001,
+  "required_windows": 3,
+  "absolute_tolerance": 1e-06,
+  "relative_tolerance": 0.001,
+  "windows": [
+    {
+      "start_s": 2.5000000000000025e-05,
+      "end_s": 0.00012500000000000014,
+      "saturation_span": 0.0021891012410293798,
+      "saturation_change": 0.0021891012410293798,
+      "mean_rate_s_inverse": 21.891012410293772,
+      "tolerance": 1e-06,
+      "pass": false
+    }
+  ],
+  "limitations": [
+    "No gas vent; incompressible gas, no dissolution/compression model.",
+    "Phase-field area is a 2D proxy, not gas mass.",
+    "Plateau candidate requires longer confirmation, conservation and grid/time convergence."
+  ],
+  "snapshot": {
+    "step": 500,
+    "is_final_step": true,
+    "gas_threshold_phi": 0.5,
+    "gas_nodes": 244381,
+    "gas_components_4_connected": 1,
+    "largest_component_nodes": 244381,
+    "source_connected_liquid_pore_nodes": 1266,
+    "source_connected_liquid_pore_fraction": 0.005153736866316299,
+    "note": "Threshold components are geometric proxies, not proof of physically trapped bubbles."
+  }
+}

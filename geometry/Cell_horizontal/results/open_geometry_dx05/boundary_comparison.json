@@ -1,0 +1,11 @@
+{
+  "interior_or_source_changes": 0,
+  "changed_material_counts": {
+    "2->0": 3720,
+    "2->6": 656,
+    "2->4": 997,
+    "2->5": 997,
+    "2->7": 857
+  },
+  "same_particle_csv": true
+}

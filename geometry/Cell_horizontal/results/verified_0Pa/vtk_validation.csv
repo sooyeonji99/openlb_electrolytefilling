@@ -1,0 +1,4 @@
+file,finite_fluid_fields,source_pressure_min_Pa,source_pressure_max_Pa
+cell_horizontal_iT0000000iC00000.vti,1,0.0,0.0
+cell_horizontal_iT0000100iC00000.vti,1,-0.0002655779826454818,0.0
+cell_horizontal_iT0000200iC00000.vti,1,-0.0001101806919905357,0.0

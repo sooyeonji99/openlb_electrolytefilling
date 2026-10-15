@@ -1,0 +1,43 @@
+
+    ┃
+    ┃  ┏━━━━┓      ▁▁▁▁                   ▁▁    ▁▁▁▁
+    ┃  ┃    ┃     ╱ ▁▁ ╲▁▁▁▁  ▁▁▁  ▁▁▁▁  ╱ ╱   ╱ ▁▁ ╲
+ ┏━━╋━┓┃    ┃    ╱ ╱ ╱ ╱ ▁▁ ╲╱ ▁ ╲╱ ▁▁ ╲╱ ╱   ╱ ╱▁╱ ╱
+ ┃  ┗━╋╋━━━━┻┓  ╱ ╱▁╱ ╱ ╱▁╱ ╱  ▁▁╱ ╱ ╱ ╱ ╱▁▁▁╱ ╱▁╱ ╱
+ ┃    ┃┃     ┃  ╲▁▁▁▁╱ ▁▁▁▁╱╲▁▁▁╱▁╱ ╱▁╱▁▁▁▁▁╱▁▁▁▁▁╱
+ ┗━━━━┛┃     ┃      ╱▁╱ ==========================>>
+       ┗━━━━━┛
+
+[initialize] Version  : Cell_horizontal
+[initialize] Platform : CPU_SISD
+[initialize] Parallel : MPI
+[initialize] MPI      : 1 ranks
+[ThreadPool] Sucessfully initialized, numThreads=1
+[Directories] Directory results/open_all_400000/imageData/ created.
+[Directories] Directory results/open_all_400000/imageData/data/ created.
+[Directories] Directory results/open_all_400000/vtkData/ created.
+[Directories] Directory results/open_all_400000/vtkData/data/ created.
+[Directories] Directory results/open_all_400000/gnuplotData/ created.
+[Directories] Directory results/open_all_400000/gnuplotData/data/ created.
+[Directories] Directory results/open_all_400000/introspectionData/ created.
+[SuperGeometryStatistics2D] updated
+[SuperGeometry2D] the model is correct!
+[CuboidDecomposition] -- Cuboid Structure Statistics --
+[CuboidDecomposition]  Number of Cuboids: 	1
+[CuboidDecomposition]  Delta       : 		5e-06
+[CuboidDecomposition]  Ratio  (min): 		0.86014
+[CuboidDecomposition]         (max): 		1
+[CuboidDecomposition]  Nodes  (min): 		861861
+[CuboidDecomposition]         (max): 		861861
+[CuboidDecomposition]  Weight (min): 		861861
+[CuboidDecomposition]         (max): 		861861
+[CuboidDecomposition] ---------------------------------
+[SuperGeometryStatistics2D] materialNumber=0; count=3720; minPhysR=(0,0); maxPhysR=(0.0043,0.005)
+[SuperGeometryStatistics2D] materialNumber=1; count=245647; minPhysR=(1e-05,1e-05); maxPhysR=(0.00429,0.00499)
+[SuperGeometryStatistics2D] materialNumber=2; count=568988; minPhysR=(5e-06,5e-06); maxPhysR=(0.004295,0.004995)
+[SuperGeometryStatistics2D] materialNumber=3; count=39999; minPhysR=(0.00165,1e-05); maxPhysR=(0.00265,0.001)
+[SuperGeometryStatistics2D] materialNumber=4; count=997; minPhysR=(5e-06,1e-05); maxPhysR=(5e-06,0.00499)
+[SuperGeometryStatistics2D] materialNumber=5; count=997; minPhysR=(0.004295,1e-05); maxPhysR=(0.004295,0.00499)
+[SuperGeometryStatistics2D] materialNumber=6; count=656; minPhysR=(1e-05,5e-06); maxPhysR=(0.00429,5e-06)
+[SuperGeometryStatistics2D] materialNumber=7; count=857; minPhysR=(1e-05,0.004995); maxPhysR=(0.00429,0.004995)
+multiphase_status=FAIL mean_phi=0.0213915 phi_range=[-0.0157778,1.00686] max_u=0.303781

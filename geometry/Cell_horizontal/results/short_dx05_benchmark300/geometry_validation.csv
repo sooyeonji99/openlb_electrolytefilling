@@ -1,0 +1,2 @@
+status,nx,ny,dx_m,width_m,height_m,source_cells,pore_cells,porosity,source_connected_pore_fraction,reaches_top_interior
+PASS,861,368,4.9999999999999996e-06,0.0043,0.0018349999999999998,19899,86987,0.29785070313543277,1,1
