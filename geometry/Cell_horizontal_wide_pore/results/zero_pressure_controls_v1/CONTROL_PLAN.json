@@ -1,0 +1,17 @@
+{
+  "pressure_pa": 0,
+  "steps_requested": 10000,
+  "dx_um": 5,
+  "NS_tau": 0.53,
+  "phase_tau": 0.53,
+  "source_mode": "legacy",
+  "solid_model": "fixed impermeable no-slip curved-wetting wall",
+  "contact_angle_deg": 60,
+  "solid_mass_density": "not specified; no solid dynamics",
+  "solid_elastic_parameters": "not specified; no solid mechanics",
+  "control_interpretation": {
+    "p0_sigma_default": "pressure drive removed; reservoir phi remains forced to 1 and capillary/wetting remain",
+    "p0_sigma0": "pressure drive and NS capillary force removed; phase sharpening/wetting and reservoir phi forcing remain"
+  },
+  "unchanged_main_source": true
+}

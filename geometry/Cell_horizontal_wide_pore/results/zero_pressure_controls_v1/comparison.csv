@@ -1,0 +1,3 @@
+case,status,steps,physical_time_s,sigma_N_m,max_speed_over_run,min_phi_over_run,max_phi_over_run,solver_wall_seconds,vtk_check_returncode
+p0_sigma_default,FAIL,1752,0.000438,1e-05,1.0858700592854147,-0.13072265431489472,1.0430926203572382,88.49493417899794,0
+p0_sigma0,PASS,10000,0.0025,0,1.4916681462400413e-154,-0.02147899995309044,1.0000000000000002,466.04422936899937,0

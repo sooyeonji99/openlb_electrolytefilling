@@ -1,0 +1,866 @@
+{
+  "last_diagnostic": {
+    "step": "1752",
+    "time_s": "0.00043800000000000045",
+    "reservoir_pressure_pa": "0",
+    "pore_mean_phi": "0.0096276400631606137",
+    "min_phi": "-0.13072265431489472",
+    "max_phi": "1.0374547604205744",
+    "max_speed_lattice": "0.87344734647059707",
+    "finite": "0",
+    "min_rho_lattice": "-0.017650388883405241",
+    "min_tau_eff": "0.49947048833349783"
+  },
+  "snapshots": [
+    {
+      "step": 800,
+      "max_speed_lattice_vtk": 8.128673631315221e-05,
+      "speed_point": {
+        "x_um": 1640.0,
+        "y_um": 514.9999999999999,
+        "material": 1,
+        "phi": 0.13792012631893158,
+        "pressure_pa": -0.006904510781168938,
+        "nearest_circles": [
+          {
+            "index": 48,
+            "surface_distance_um": 13.809723880604658,
+            "center_x_um": 1561.7119323198478,
+            "center_y_um": 490.2810631688703,
+            "radius_um": 68.28806768015215
+          },
+          {
+            "index": 151,
+            "surface_distance_um": 16.62904540260394,
+            "center_x_um": 1673.931513719531,
+            "center_y_um": 558.688578518035,
+            "radius_um": 38.68857851803503
+          }
+        ]
+      },
+      "min_phi_point": {
+        "x_um": 1620.0,
+        "y_um": 530.0,
+        "material": 1,
+        "phi": -0.0008731948910281062,
+        "pressure_pa": 8.914872159948573e-05,
+        "nearest_circles": [
+          {
+            "index": 48,
+            "surface_distance_um": 2.2462698929850142,
+            "center_x_um": 1561.7119323198478,
+            "center_y_um": 490.2810631688703,
+            "radius_um": 68.28806768015215
+          },
+          {
+            "index": 151,
+            "surface_distance_um": 22.39859451743491,
+            "center_x_um": 1673.931513719531,
+            "center_y_um": 558.688578518035,
+            "radius_um": 38.68857851803503
+          }
+        ]
+      },
+      "max_phi_point": {
+        "x_um": 1649.9999999999998,
+        "y_um": 10.0,
+        "material": 3,
+        "phi": 1.0,
+        "pressure_pa": -7.691484711358498e-07,
+        "nearest_circles": [
+          {
+            "index": 80,
+            "surface_distance_um": 51.652112585778724,
+            "center_x_um": 1541.1657488942533,
+            "center_y_um": 98.83425110574679,
+            "radius_um": 88.83425110574679
+          },
+          {
+            "index": 226,
+            "surface_distance_um": 220.28738801756248,
+            "center_x_um": 1531.494718634406,
+            "center_y_um": 305.94807710289325,
+            "radius_um": 98.5052813655942
+          }
+        ]
+      },
+      "max_outlet_speed_lattice_vtk": 4.5274691728991504e-07
+    },
+    {
+      "step": 900,
+      "max_speed_lattice_vtk": 8.458801847237737e-05,
+      "speed_point": {
+        "x_um": 1640.0,
+        "y_um": 514.9999999999999,
+        "material": 1,
+        "phi": 0.14751088619232178,
+        "pressure_pa": 0.004195336252450943,
+        "nearest_circles": [
+          {
+            "index": 48,
+            "surface_distance_um": 13.809723880604658,
+            "center_x_um": 1561.7119323198478,
+            "center_y_um": 490.2810631688703,
+            "radius_um": 68.28806768015215
+          },
+          {
+            "index": 151,
+            "surface_distance_um": 16.62904540260394,
+            "center_x_um": 1673.931513719531,
+            "center_y_um": 558.688578518035,
+            "radius_um": 38.68857851803503
+          }
+        ]
+      },
+      "min_phi_point": {
+        "x_um": 1620.0,
+        "y_um": 530.0,
+        "material": 1,
+        "phi": -0.0007244307198561728,
+        "pressure_pa": 0.006176698487251997,
+        "nearest_circles": [
+          {
+            "index": 48,
+            "surface_distance_um": 2.2462698929850142,
+            "center_x_um": 1561.7119323198478,
+            "center_y_um": 490.2810631688703,
+            "radius_um": 68.28806768015215
+          },
+          {
+            "index": 151,
+            "surface_distance_um": 22.39859451743491,
+            "center_x_um": 1673.931513719531,
+            "center_y_um": 558.688578518035,
+            "radius_um": 38.68857851803503
+          }
+        ]
+      },
+      "max_phi_point": {
+        "x_um": 1649.9999999999998,
+        "y_um": 10.0,
+        "material": 3,
+        "phi": 1.0,
+        "pressure_pa": -5.422377284958202e-07,
+        "nearest_circles": [
+          {
+            "index": 80,
+            "surface_distance_um": 51.652112585778724,
+            "center_x_um": 1541.1657488942533,
+            "center_y_um": 98.83425110574679,
+            "radius_um": 88.83425110574679
+          },
+          {
+            "index": 226,
+            "surface_distance_um": 220.28738801756248,
+            "center_x_um": 1531.494718634406,
+            "center_y_um": 305.94807710289325,
+            "radius_um": 98.5052813655942
+          }
+        ]
+      },
+      "max_outlet_speed_lattice_vtk": 4.6378349907172424e-07
+    },
+    {
+      "step": 1000,
+      "max_speed_lattice_vtk": 8.846624551554143e-05,
+      "speed_point": {
+        "x_um": 2689.9999999999995,
+        "y_um": 205.0,
+        "material": 1,
+        "phi": 0.0017347079701721668,
+        "pressure_pa": -5.682056427001953,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 23.237313642256392,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 188,
+            "surface_distance_um": 77.99199134535841,
+            "center_x_um": 2714.40163147389,
+            "center_y_um": 324.9364802227949,
+            "radius_um": 44.40163147388996
+          }
+        ]
+      },
+      "min_phi_point": {
+        "x_um": 1620.0,
+        "y_um": 530.0,
+        "material": 1,
+        "phi": -0.0005782852531410754,
+        "pressure_pa": -0.009400347247719765,
+        "nearest_circles": [
+          {
+            "index": 48,
+            "surface_distance_um": 2.2462698929850142,
+            "center_x_um": 1561.7119323198478,
+            "center_y_um": 490.2810631688703,
+            "radius_um": 68.28806768015215
+          },
+          {
+            "index": 151,
+            "surface_distance_um": 22.39859451743491,
+            "center_x_um": 1673.931513719531,
+            "center_y_um": 558.688578518035,
+            "radius_um": 38.68857851803503
+          }
+        ]
+      },
+      "max_phi_point": {
+        "x_um": 1649.9999999999998,
+        "y_um": 10.0,
+        "material": 3,
+        "phi": 1.0,
+        "pressure_pa": -3.918773643363238e-07,
+        "nearest_circles": [
+          {
+            "index": 80,
+            "surface_distance_um": 51.652112585778724,
+            "center_x_um": 1541.1657488942533,
+            "center_y_um": 98.83425110574679,
+            "radius_um": 88.83425110574679
+          },
+          {
+            "index": 226,
+            "surface_distance_um": 220.28738801756248,
+            "center_x_um": 1531.494718634406,
+            "center_y_um": 305.94807710289325,
+            "radius_um": 98.5052813655942
+          }
+        ]
+      },
+      "max_outlet_speed_lattice_vtk": 3.128109256067549e-07
+    },
+    {
+      "step": 1100,
+      "max_speed_lattice_vtk": 0.0002843545991609864,
+      "speed_point": {
+        "x_um": 2709.9999999999995,
+        "y_um": 209.99999999999997,
+        "material": 1,
+        "phi": 9.689441867521964e-06,
+        "pressure_pa": 2.5674033164978027,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 3.3377813716096663,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 188,
+            "surface_distance_um": 70.6191007687665,
+            "center_x_um": 2714.40163147389,
+            "center_y_um": 324.9364802227949,
+            "radius_um": 44.40163147388996
+          }
+        ]
+      },
+      "min_phi_point": {
+        "x_um": 2699.9999999999995,
+        "y_um": 549.9999999999999,
+        "material": 1,
+        "phi": -0.0004992047906853259,
+        "pressure_pa": 0.0191219262778759,
+        "nearest_circles": [
+          {
+            "index": 193,
+            "surface_distance_um": 3.04297909546163,
+            "center_x_um": 2656.70235349661,
+            "center_y_um": 594.5410563127475,
+            "radius_um": 59.074585974233834
+          },
+          {
+            "index": 110,
+            "surface_distance_um": 17.15755120857593,
+            "center_x_um": 2764.887876965144,
+            "center_y_um": 468.0588154956049,
+            "radius_um": 87.36418956829333
+          }
+        ]
+      },
+      "max_phi_point": {
+        "x_um": 1649.9999999999998,
+        "y_um": 10.0,
+        "material": 3,
+        "phi": 1.0,
+        "pressure_pa": -2.8936605644958036e-07,
+        "nearest_circles": [
+          {
+            "index": 80,
+            "surface_distance_um": 51.652112585778724,
+            "center_x_um": 1541.1657488942533,
+            "center_y_um": 98.83425110574679,
+            "radius_um": 88.83425110574679
+          },
+          {
+            "index": 226,
+            "surface_distance_um": 220.28738801756248,
+            "center_x_um": 1531.494718634406,
+            "center_y_um": 305.94807710289325,
+            "radius_um": 98.5052813655942
+          }
+        ]
+      },
+      "max_outlet_speed_lattice_vtk": 4.3050958993262663e-07
+    },
+    {
+      "step": 1200,
+      "max_speed_lattice_vtk": 0.0009753008626480322,
+      "speed_point": {
+        "x_um": 2709.9999999999995,
+        "y_um": 209.99999999999997,
+        "material": 1,
+        "phi": 7.819588972779457e-06,
+        "pressure_pa": -2.0809738636016846,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 3.3377813716096663,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 188,
+            "surface_distance_um": 70.6191007687665,
+            "center_x_um": 2714.40163147389,
+            "center_y_um": 324.9364802227949,
+            "radius_um": 44.40163147388996
+          }
+        ]
+      },
+      "min_phi_point": {
+        "x_um": 2699.9999999999995,
+        "y_um": 549.9999999999999,
+        "material": 1,
+        "phi": -0.0004827804514206946,
+        "pressure_pa": -0.04189690947532654,
+        "nearest_circles": [
+          {
+            "index": 193,
+            "surface_distance_um": 3.04297909546163,
+            "center_x_um": 2656.70235349661,
+            "center_y_um": 594.5410563127475,
+            "radius_um": 59.074585974233834
+          },
+          {
+            "index": 110,
+            "surface_distance_um": 17.15755120857593,
+            "center_x_um": 2764.887876965144,
+            "center_y_um": 468.0588154956049,
+            "radius_um": 87.36418956829333
+          }
+        ]
+      },
+      "max_phi_point": {
+        "x_um": 1649.9999999999998,
+        "y_um": 10.0,
+        "material": 3,
+        "phi": 1.0,
+        "pressure_pa": -2.2134300081688707e-07,
+        "nearest_circles": [
+          {
+            "index": 80,
+            "surface_distance_um": 51.652112585778724,
+            "center_x_um": 1541.1657488942533,
+            "center_y_um": 98.83425110574679,
+            "radius_um": 88.83425110574679
+          },
+          {
+            "index": 226,
+            "surface_distance_um": 220.28738801756248,
+            "center_x_um": 1531.494718634406,
+            "center_y_um": 305.94807710289325,
+            "radius_um": 98.5052813655942
+          }
+        ]
+      },
+      "max_outlet_speed_lattice_vtk": 4.1216180761694026e-07
+    },
+    {
+      "step": 1300,
+      "max_speed_lattice_vtk": 0.002162904345368091,
+      "speed_point": {
+        "x_um": 2699.9999999999995,
+        "y_um": 194.99999999999997,
+        "material": 1,
+        "phi": 0.00022731733042746782,
+        "pressure_pa": 10.406545639038086,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 13.895269916207145,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 236,
+            "surface_distance_um": 74.59615664779072,
+            "center_x_um": 2726.560707559474,
+            "center_y_um": 66.56070755947398,
+            "radius_um": 56.56070755947398
+          }
+        ]
+      },
+      "min_phi_point": {
+        "x_um": 2699.9999999999995,
+        "y_um": 549.9999999999999,
+        "material": 1,
+        "phi": -0.00046347203897312284,
+        "pressure_pa": -0.08808956295251846,
+        "nearest_circles": [
+          {
+            "index": 193,
+            "surface_distance_um": 3.04297909546163,
+            "center_x_um": 2656.70235349661,
+            "center_y_um": 594.5410563127475,
+            "radius_um": 59.074585974233834
+          },
+          {
+            "index": 110,
+            "surface_distance_um": 17.15755120857593,
+            "center_x_um": 2764.887876965144,
+            "center_y_um": 468.0588154956049,
+            "radius_um": 87.36418956829333
+          }
+        ]
+      },
+      "max_phi_point": {
+        "x_um": 1649.9999999999998,
+        "y_um": 10.0,
+        "material": 3,
+        "phi": 1.0,
+        "pressure_pa": -1.6860140306107496e-07,
+        "nearest_circles": [
+          {
+            "index": 80,
+            "surface_distance_um": 51.652112585778724,
+            "center_x_um": 1541.1657488942533,
+            "center_y_um": 98.83425110574679,
+            "radius_um": 88.83425110574679
+          },
+          {
+            "index": 226,
+            "surface_distance_um": 220.28738801756248,
+            "center_x_um": 1531.494718634406,
+            "center_y_um": 305.94807710289325,
+            "radius_um": 98.5052813655942
+          }
+        ]
+      },
+      "max_outlet_speed_lattice_vtk": 2.775509983621308e-07
+    },
+    {
+      "step": 1400,
+      "max_speed_lattice_vtk": 0.009648754305376215,
+      "speed_point": {
+        "x_um": 2709.9999999999995,
+        "y_um": 209.99999999999997,
+        "material": 1,
+        "phi": 4.490994615480304e-05,
+        "pressure_pa": -28.420923233032227,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 3.3377813716096663,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 188,
+            "surface_distance_um": 70.6191007687665,
+            "center_x_um": 2714.40163147389,
+            "center_y_um": 324.9364802227949,
+            "radius_um": 44.40163147388996
+          }
+        ]
+      },
+      "min_phi_point": {
+        "x_um": 2699.9999999999995,
+        "y_um": 549.9999999999999,
+        "material": 1,
+        "phi": -0.00044513869215734303,
+        "pressure_pa": -0.055423181504011154,
+        "nearest_circles": [
+          {
+            "index": 193,
+            "surface_distance_um": 3.04297909546163,
+            "center_x_um": 2656.70235349661,
+            "center_y_um": 594.5410563127475,
+            "radius_um": 59.074585974233834
+          },
+          {
+            "index": 110,
+            "surface_distance_um": 17.15755120857593,
+            "center_x_um": 2764.887876965144,
+            "center_y_um": 468.0588154956049,
+            "radius_um": 87.36418956829333
+          }
+        ]
+      },
+      "max_phi_point": {
+        "x_um": 1649.9999999999998,
+        "y_um": 10.0,
+        "material": 3,
+        "phi": 1.0,
+        "pressure_pa": -1.3301874446369766e-07,
+        "nearest_circles": [
+          {
+            "index": 80,
+            "surface_distance_um": 51.652112585778724,
+            "center_x_um": 1541.1657488942533,
+            "center_y_um": 98.83425110574679,
+            "radius_um": 88.83425110574679
+          },
+          {
+            "index": 226,
+            "surface_distance_um": 220.28738801756248,
+            "center_x_um": 1531.494718634406,
+            "center_y_um": 305.94807710289325,
+            "radius_um": 98.5052813655942
+          }
+        ]
+      },
+      "max_outlet_speed_lattice_vtk": 4.1535122363711755e-07
+    },
+    {
+      "step": 1500,
+      "max_speed_lattice_vtk": 0.01839217694012256,
+      "speed_point": {
+        "x_um": 2689.9999999999995,
+        "y_um": 205.0,
+        "material": 1,
+        "phi": 0.0024644294753670692,
+        "pressure_pa": -1220.849365234375,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 23.237313642256392,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 188,
+            "surface_distance_um": 77.99199134535841,
+            "center_x_um": 2714.40163147389,
+            "center_y_um": 324.9364802227949,
+            "radius_um": 44.40163147388996
+          }
+        ]
+      },
+      "min_phi_point": {
+        "x_um": 2699.9999999999995,
+        "y_um": 219.99999999999997,
+        "material": 1,
+        "phi": -0.0016281428979709744,
+        "pressure_pa": -920.8330688476562,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 14.332879924282443,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 188,
+            "surface_distance_um": 61.51848876140235,
+            "center_x_um": 2714.40163147389,
+            "center_y_um": 324.9364802227949,
+            "radius_um": 44.40163147388996
+          }
+        ]
+      },
+      "max_phi_point": {
+        "x_um": 1649.9999999999998,
+        "y_um": 10.0,
+        "material": 3,
+        "phi": 1.0,
+        "pressure_pa": -1.060565892885279e-07,
+        "nearest_circles": [
+          {
+            "index": 80,
+            "surface_distance_um": 51.652112585778724,
+            "center_x_um": 1541.1657488942533,
+            "center_y_um": 98.83425110574679,
+            "radius_um": 88.83425110574679
+          },
+          {
+            "index": 226,
+            "surface_distance_um": 220.28738801756248,
+            "center_x_um": 1531.494718634406,
+            "center_y_um": 305.94807710289325,
+            "radius_um": 98.5052813655942
+          }
+        ]
+      },
+      "max_outlet_speed_lattice_vtk": 5.598942607321084e-07
+    },
+    {
+      "step": 1600,
+      "max_speed_lattice_vtk": 0.06477342398603854,
+      "speed_point": {
+        "x_um": 2699.9999999999995,
+        "y_um": 209.99999999999997,
+        "material": 1,
+        "phi": -0.0022118999622762203,
+        "pressure_pa": -751.4345092773438,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 13.326116876107806,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 188,
+            "surface_distance_um": 71.43360269566088,
+            "center_x_um": 2714.40163147389,
+            "center_y_um": 324.9364802227949,
+            "radius_um": 44.40163147388996
+          }
+        ]
+      },
+      "min_phi_point": {
+        "x_um": 2705.0,
+        "y_um": 225.0,
+        "material": 1,
+        "phi": -0.004338827915489674,
+        "pressure_pa": -170.7548828125,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 10.35804776049861,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 188,
+            "surface_distance_um": 55.97610885578632,
+            "center_x_um": 2714.40163147389,
+            "center_y_um": 324.9364802227949,
+            "radius_um": 44.40163147388996
+          }
+        ]
+      },
+      "max_phi_point": {
+        "x_um": 1649.9999999999998,
+        "y_um": 10.0,
+        "material": 3,
+        "phi": 1.0,
+        "pressure_pa": -8.356712299928404e-08,
+        "nearest_circles": [
+          {
+            "index": 80,
+            "surface_distance_um": 51.652112585778724,
+            "center_x_um": 1541.1657488942533,
+            "center_y_um": 98.83425110574679,
+            "radius_um": 88.83425110574679
+          },
+          {
+            "index": 226,
+            "surface_distance_um": 220.28738801756248,
+            "center_x_um": 1531.494718634406,
+            "center_y_um": 305.94807710289325,
+            "radius_um": 98.5052813655942
+          }
+        ]
+      },
+      "max_outlet_speed_lattice_vtk": 3.211951025150487e-07
+    },
+    {
+      "step": 1700,
+      "max_speed_lattice_vtk": 0.27249859308580815,
+      "speed_point": {
+        "x_um": 2685.0,
+        "y_um": 219.99999999999997,
+        "material": 1,
+        "phi": -0.032380975782871246,
+        "pressure_pa": -9072.6689453125,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 29.176750821088213,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 188,
+            "surface_distance_um": 64.57598464462993,
+            "center_x_um": 2714.40163147389,
+            "center_y_um": 324.9364802227949,
+            "radius_um": 44.40163147388996
+          }
+        ]
+      },
+      "min_phi_point": {
+        "x_um": 2685.0,
+        "y_um": 185.0,
+        "material": 1,
+        "phi": -0.03497031703591347,
+        "pressure_pa": -7273.72607421875,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 30.30297578467505,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 236,
+            "surface_distance_um": 68.95884632220842,
+            "center_x_um": 2726.560707559474,
+            "center_y_um": 66.56070755947398,
+            "radius_um": 56.56070755947398
+          }
+        ]
+      },
+      "max_phi_point": {
+        "x_um": 1649.9999999999998,
+        "y_um": 10.0,
+        "material": 3,
+        "phi": 1.0,
+        "pressure_pa": -6.997617418846858e-08,
+        "nearest_circles": [
+          {
+            "index": 80,
+            "surface_distance_um": 51.652112585778724,
+            "center_x_um": 1541.1657488942533,
+            "center_y_um": 98.83425110574679,
+            "radius_um": 88.83425110574679
+          },
+          {
+            "index": 226,
+            "surface_distance_um": 220.28738801756248,
+            "center_x_um": 1531.494718634406,
+            "center_y_um": 305.94807710289325,
+            "radius_um": 98.5052813655942
+          }
+        ]
+      },
+      "max_outlet_speed_lattice_vtk": 1.8029617194770273e-07
+    },
+    {
+      "step": 1752,
+      "max_speed_lattice_vtk": 1.6338430493127345,
+      "speed_point": {
+        "x_um": 2705.0,
+        "y_um": 229.99999999999997,
+        "material": 1,
+        "phi": -0.08428728580474854,
+        "pressure_pa": -31.755172729492188,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 11.593131259910177,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 188,
+            "surface_distance_um": 50.9992382887279,
+            "center_x_um": 2714.40163147389,
+            "center_y_um": 324.9364802227949,
+            "radius_um": 44.40163147388996
+          }
+        ]
+      },
+      "min_phi_point": {
+        "x_um": 2679.9999999999995,
+        "y_um": 205.0,
+        "material": 1,
+        "phi": -0.13072265684604645,
+        "pressure_pa": 5433.2744140625,
+        "nearest_circles": [
+          {
+            "index": 196,
+            "surface_distance_um": 33.23693003243566,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          },
+          {
+            "index": 188,
+            "surface_distance_um": 80.37108804563582,
+            "center_x_um": 2714.40163147389,
+            "center_y_um": 324.9364802227949,
+            "radius_um": 44.40163147388996
+          }
+        ]
+      },
+      "max_phi_point": {
+        "x_um": 2655.0,
+        "y_um": 260.0,
+        "material": 1,
+        "phi": 1.0374547243118286,
+        "pressure_pa": 17682.74609375,
+        "nearest_circles": [
+          {
+            "index": 188,
+            "surface_distance_um": 43.605756201721164,
+            "center_x_um": 2714.40163147389,
+            "center_y_um": 324.9364802227949,
+            "radius_um": 44.40163147388996
+          },
+          {
+            "index": 196,
+            "surface_distance_um": 68.68996824392163,
+            "center_x_um": 2789.6381829050642,
+            "center_y_um": 205.91551655860576,
+            "radius_um": 76.40507524516552
+          }
+        ]
+      },
+      "max_outlet_speed_lattice_vtk": 1.61244895480195e-07
+    }
+  ],
+  "first_speed_above_0.1": {
+    "step": "1610",
+    "time_s": "0.00040250000000000041",
+    "reservoir_pressure_pa": "0",
+    "pore_mean_phi": "0.0094243145121060221",
+    "min_phi": "-0.0051920794150803751",
+    "max_phi": "1.0000000000000002",
+    "max_speed_lattice": "0.10471392233036607",
+    "finite": "1",
+    "min_rho_lattice": "0.095327128526427662",
+    "min_tau_eff": "0.50285981385579281"
+  },
+  "first_speed_above_0.3": {
+    "step": "1698",
+    "time_s": "0.00042450000000000045",
+    "reservoir_pressure_pa": "0",
+    "pore_mean_phi": "0.0095647751862095245",
+    "min_phi": "-0.022132090199917132",
+    "max_phi": "1.0000000000000002",
+    "max_speed_lattice": "0.30695024004762544",
+    "finite": "1",
+    "min_rho_lattice": "0.080081118820074584",
+    "min_tau_eff": "0.50240243356460224"
+  },
+  "first_speed_above_1": {
+    "step": "1749",
+    "time_s": "0.00043725000000000046",
+    "reservoir_pressure_pa": "0",
+    "pore_mean_phi": "0.0096259088980123041",
+    "min_phi": "-0.071491688442261392",
+    "max_phi": "1.0379481624333791",
+    "max_speed_lattice": "1.0858700592854147",
+    "finite": "1",
+    "min_rho_lattice": "0.035657480401964751",
+    "min_tau_eff": "0.50106972441205899"
+  }
+}

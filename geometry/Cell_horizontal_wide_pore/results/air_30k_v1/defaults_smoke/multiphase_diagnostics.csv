@@ -1,0 +1,2 @@
+step,time_s,reservoir_pressure_pa,pore_mean_phi,min_phi,max_phi,max_speed_lattice,finite,min_rho_lattice,min_tau_eff,out_of_range_phi_cells,phi_overshoot_l1,raw_min_phi,raw_max_phi,phase_projection_l1,phase_projection_mass_residual,phase_projection_cells
+0,0,0,0.0015980544459901478,2.2204460492503131e-16,1,0,1,0.0011999999999999999,0.53000000000000003,0,0,0,1,0,0,0

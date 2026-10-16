@@ -1,0 +1,8 @@
+{
+  "main.cpp": "2e548ffe34cfc05fb02bbf5c3b83f5119af898a4806e16d569f75c1d4aa9df82",
+  "physical_range_coupling.h": "da83be736d1b10a4da531e317205d833143eebab0f48f555da0cbc648b2249ec",
+  "phase_projection.h": "5a2ca12faf4b0438da29c0abfae64959ffa2a13c7daefbc0877d233ae545e549",
+  "geometry.h": "6295510edbb4f9e401ba066a5b2928a2713b7249b6da941ce5336a72600d83ba",
+  "test_phase_projection.cpp": "35bfeeee753dfb661170bf4fec7416c93d595a17c1e4f092a9ac574d079d69e7",
+  "Makefile": "4d13dad31873b55d12ff32ca897fc16ff7f8ea3591340ecc4a71c003b1d3180e"
+}

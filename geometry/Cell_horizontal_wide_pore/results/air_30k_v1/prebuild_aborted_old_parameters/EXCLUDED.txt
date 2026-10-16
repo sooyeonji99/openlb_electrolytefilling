@@ -1,0 +1,1 @@
+Excluded: launched before air-property build finished; run_config confirms old gas properties. Interrupted intentionally, not an air stability result.

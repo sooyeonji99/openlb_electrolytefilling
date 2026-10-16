@@ -1,0 +1,12 @@
+{
+  "p0_sigma_default": {
+    "geometry_identical": true,
+    "saved_vtk_checked": 19,
+    "input_parameters_confirmed": true
+  },
+  "p0_sigma0": {
+    "geometry_identical": true,
+    "saved_vtk_checked": 101,
+    "input_parameters_confirmed": true
+  }
+}

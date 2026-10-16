@@ -1,0 +1,26 @@
+{
+  "theta90_gas_baseline": {
+    "geometry_identical": true,
+    "parameters_checked": true,
+    "vtk_snapshots_checked": 19,
+    "diagnostic_rows": 1746
+  },
+  "theta30_gas_baseline": {
+    "geometry_identical": true,
+    "parameters_checked": true,
+    "vtk_snapshots_checked": 19,
+    "diagnostic_rows": 1760
+  },
+  "theta30_gas_matched": {
+    "geometry_identical": true,
+    "parameters_checked": true,
+    "vtk_snapshots_checked": 101,
+    "diagnostic_rows": 10001
+  },
+  "theta90_gas_matched": {
+    "geometry_identical": true,
+    "parameters_checked": true,
+    "vtk_snapshots_checked": 101,
+    "diagnostic_rows": 10001
+  }
+}

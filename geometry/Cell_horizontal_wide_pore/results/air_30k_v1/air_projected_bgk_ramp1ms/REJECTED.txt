@@ -1,0 +1,1 @@
+Rejected: conservative phase projection did not stabilize NS flow. Last logged max NS lattice speed ~9.69e6, raw phi -2031..2426. Next step threw infeasible phase-mass exception. Not a PASS despite last diagnostics finite flag.

@@ -1,0 +1,32 @@
+{
+  "cases": [
+    [
+      "theta30_gas_baseline",
+      30,
+      1e-07
+    ],
+    [
+      "theta90_gas_baseline",
+      90,
+      1e-07
+    ],
+    [
+      "theta30_gas_matched",
+      30,
+      1e-06
+    ],
+    [
+      "theta90_gas_matched",
+      90,
+      1e-06
+    ]
+  ],
+  "steps": 10000,
+  "pressure_pa": 0,
+  "sigma_N_m": 1e-05,
+  "phase_tau": 0.53,
+  "liquid_NS_tau": 0.53,
+  "gas_NS_tau_baseline": 0.503,
+  "gas_NS_tau_matched": 0.53,
+  "note": "90 deg is a neutral wetting control; wall boundary remains active. Matched gas viscosity is an artificial sensitivity case; rho_gas stays 100 kg/m3."
+}

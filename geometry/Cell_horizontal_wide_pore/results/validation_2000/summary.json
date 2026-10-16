@@ -1,0 +1,19 @@
+{
+  "result": {
+    "status": "PASS",
+    "dx_m": "5e-06",
+    "dt_s": "2.5e-07",
+    "steps": "2000",
+    "physical_time_s": "0.0005",
+    "reservoir_pressure_pa": "2500",
+    "pore_mean_phi": "0.0288936",
+    "min_phi": "-0.00408289",
+    "max_phi": "1",
+    "max_speed_lattice": "0.0835357"
+  },
+  "max_u_over_run": 0.09885359449261796,
+  "min_phi_over_run": -0.021478116991516805,
+  "max_phi_over_run": 1.0041149575371675,
+  "saved_snapshots_checked": 21,
+  "diagnostic_rows": 2001
+}
