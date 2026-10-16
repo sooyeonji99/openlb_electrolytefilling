@@ -1,0 +1,48 @@
+[DESKTOP-L655522:00014] opal_ifinit: socket() failed with errno=1
+[DESKTOP-L655522:00014] pmix_ifinit: socket() failed with errno=1
+[1792127406.375378] [DESKTOP-L655522:14   :0]            sock.c:114  UCX  WARN  getifaddrs error: Operation not permitted
+[1792127406.375391] [DESKTOP-L655522:14   :0]            sock.c:114  UCX  WARN  getifaddrs error: Operation not permitted
+[1792127406.375436] [DESKTOP-L655522:14   :0]            sock.c:114  UCX  WARN  getifaddrs error: Operation not permitted
+[1792127406.375438] [DESKTOP-L655522:14   :0]            sock.c:114  UCX  WARN  getifaddrs error: Operation not permitted
+
+    ┃
+    ┃  ┏━━━━┓      ▁▁▁▁                   ▁▁    ▁▁▁▁
+    ┃  ┃    ┃     ╱ ▁▁ ╲▁▁▁▁  ▁▁▁  ▁▁▁▁  ╱ ╱   ╱ ▁▁ ╲
+ ┏━━╋━┓┃    ┃    ╱ ╱ ╱ ╱ ▁▁ ╲╱ ▁ ╲╱ ▁▁ ╲╱ ╱   ╱ ╱▁╱ ╱
+ ┃  ┗━╋╋━━━━┻┓  ╱ ╱▁╱ ╱ ╱▁╱ ╱  ▁▁╱ ╱ ╱ ╱ ╱▁▁▁╱ ╱▁╱ ╱
+ ┃    ┃┃     ┃  ╲▁▁▁▁╱ ▁▁▁▁╱╲▁▁▁╱▁╱ ╱▁╱▁▁▁▁▁╱▁▁▁▁▁╱
+ ┗━━━━┛┃     ┃      ╱▁╱ ==========================>>
+       ┗━━━━━┛
+
+[initialize] Version  : NMC_variable_controlled
+[initialize] Platform : CPU_SISD
+[initialize] Parallel : MPI
+[initialize] MPI      : 1 ranks
+[ThreadPool] Sucessfully initialized, numThreads=1
+[Directories] Directory results/smoke_gravity/imageData/ created.
+[Directories] Directory results/smoke_gravity/imageData/data/ created.
+[Directories] Directory results/smoke_gravity/vtkData/ created.
+[Directories] Directory results/smoke_gravity/vtkData/data/ created.
+[Directories] Directory results/smoke_gravity/gnuplotData/ created.
+[Directories] Directory results/smoke_gravity/gnuplotData/data/ created.
+[Directories] Directory results/smoke_gravity/introspectionData/ created.
+[SuperGeometryStatistics2D] updated
+[SuperGeometry2D] the model is correct!
+[CuboidDecomposition] -- Cuboid Structure Statistics --
+[CuboidDecomposition]  Number of Cuboids: 	1
+[CuboidDecomposition]  Delta       : 		5e-06
+[CuboidDecomposition]  Ratio  (min): 		1
+[CuboidDecomposition]         (max): 		2.33967
+[CuboidDecomposition]  Nodes  (min): 		316848
+[CuboidDecomposition]         (max): 		316848
+[CuboidDecomposition]  Weight (min): 		316848
+[CuboidDecomposition]         (max): 		316848
+[CuboidDecomposition] ---------------------------------
+[SuperGeometryStatistics2D] materialNumber=0; count=2454; minPhysR=(0,0); maxPhysR=(0.0043,0.001835)
+[SuperGeometryStatistics2D] materialNumber=1; count=116263; minPhysR=(1e-05,1e-05); maxPhysR=(0.00429,0.001825)
+[SuperGeometryStatistics2D] materialNumber=2; count=176647; minPhysR=(5e-06,5e-06); maxPhysR=(0.004295,0.00183)
+[SuperGeometryStatistics2D] materialNumber=3; count=19899; minPhysR=(0.00165,1e-05); maxPhysR=(0.00265,0.0005)
+[SuperGeometryStatistics2D] materialNumber=4; count=364; minPhysR=(5e-06,1e-05); maxPhysR=(5e-06,0.001825)
+[SuperGeometryStatistics2D] materialNumber=5; count=364; minPhysR=(0.004295,1e-05); maxPhysR=(0.004295,0.001825)
+[SuperGeometryStatistics2D] materialNumber=7; count=857; minPhysR=(1e-05,0.00183); maxPhysR=(0.00429,0.00183)
+multiphase_status=PASS mean_phi=0.00245065 phi_range=[-4.44089e-16,1] max_u=8.70899e-05

@@ -1,0 +1,17 @@
+{
+  "smoke_default": {
+    "target_pressure_pa": 2500,
+    "steps": 10,
+    "status": "PASS",
+    "vtk_snapshots": 2
+  },
+  "smoke_p5000": {
+    "target_pressure_pa": 5000,
+    "steps": 10,
+    "status": "PASS",
+    "vtk_snapshots": 2
+  },
+  "baseline_first_10_steps_identical": true,
+  "overwrite_rejected": true,
+  "unknown_option_rejected": true
+}

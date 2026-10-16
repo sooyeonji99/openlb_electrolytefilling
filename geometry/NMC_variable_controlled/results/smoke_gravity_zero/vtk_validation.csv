@@ -1,0 +1,3 @@
+file,finite_fluid_fields,source_pressure_min_Pa,source_pressure_max_Pa,max_fluid_speed_lattice_vtk,min_fluid_phi_vtk,max_fluid_phi_vtk,outlet_nodes,outlet_pressure_min_Pa,outlet_pressure_max_Pa,outlet_net_advective_flux_m2_s,outlet_liquid_advective_flux_m2_s,outlet_backflow_nodes
+cell_horizontal_iT0000000iC00000.vti,1,0.0,0.0,0.0,2.220446049250313e-16,1.0,1585,0.0,0.0,0.0,0.0,0
+cell_horizontal_iT0000010iC00000.vti,1,6.246984958648682,6.25,3.0711686171339405e-05,-4.440892098500626e-16,1.0,1585,0.0,0.0,0.0,0.0,0

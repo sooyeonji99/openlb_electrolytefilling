@@ -1,0 +1,42 @@
+[1792122385.577025] [DESKTOP-L655522:9    :0]            sock.c:114  UCX  WARN  getifaddrs error: Operation not permitted
+[1792122385.577033] [DESKTOP-L655522:9    :0]            sock.c:114  UCX  WARN  getifaddrs error: Operation not permitted
+[1792122385.577034] [DESKTOP-L655522:9    :0]            sock.c:114  UCX  WARN  getifaddrs error: Operation not permitted
+[1792122385.577035] [DESKTOP-L655522:9    :0]            sock.c:114  UCX  WARN  getifaddrs error: Operation not permitted
+
+    ┃
+    ┃  ┏━━━━┓      ▁▁▁▁                   ▁▁    ▁▁▁▁
+    ┃  ┃    ┃     ╱ ▁▁ ╲▁▁▁▁  ▁▁▁  ▁▁▁▁  ╱ ╱   ╱ ▁▁ ╲
+ ┏━━╋━┓┃    ┃    ╱ ╱ ╱ ╱ ▁▁ ╲╱ ▁ ╲╱ ▁▁ ╲╱ ╱   ╱ ╱▁╱ ╱
+ ┃  ┗━╋╋━━━━┻┓  ╱ ╱▁╱ ╱ ╱▁╱ ╱  ▁▁╱ ╱ ╱ ╱ ╱▁▁▁╱ ╱▁╱ ╱
+ ┃    ┃┃     ┃  ╲▁▁▁▁╱ ▁▁▁▁╱╲▁▁▁╱▁╱ ╱▁╱▁▁▁▁▁╱▁▁▁▁▁╱
+ ┗━━━━┛┃     ┃      ╱▁╱ ==========================>>
+       ┗━━━━━┛
+
+[initialize] Version  : NMC_variable_controlled
+[initialize] Platform : CPU_SISD
+[initialize] Parallel : MPI
+[initialize] MPI      : 1 ranks
+[ThreadPool] Sucessfully initialized, numThreads=1
+Usage: ./run.sh [options] or ./main [options]
+  --electrolyte-pressure-pa PA  Electrolyte source pressure (default 2500 Pa)
+  --steps N                     Total update count (default 30000)
+  --pressure-ramp-s SEC         Linear pressure ramp (default 0.001 s)
+  --output-every N              VTK interval (default 100)
+  --diagnostic-every N          CSV interval (default 1)
+  --output DIRECTORY            Output directory (run.sh creates a unique default)
+  --dx-um UM                    Grid spacing (default 5)
+  --tau VALUE                   Liquid relaxation time (default 0.53)
+  --phase-tau VALUE             Phase relaxation time (default 0.53)
+  --nu-liquid VALUE             Liquid kinematic viscosity (default 1e-6 m^2/s)
+  --nu-gas VALUE                Gas kinematic viscosity (default 1.5e-5 m^2/s)
+  --rho-gas VALUE               Gas density (default 1.2 kg/m^3)
+  --contact-angle-deg VALUE     Contact angle (default 30)
+  --sigma VALUE                 Surface tension (default 1e-5 N/m)
+  --outer-boundary open|closed
+  --ns-collision bgk|trt|itrt|rlb|crlb
+  --source-mode legacy|equilibrium|finite|decoupled
+  --phase-projection off|conservative
+  --material-interpolation linear|bounded
+Alias: --reservoir-pressure-pa is identical to --electrolyte-pressure-pa.
+--steps controls update count, not physical dt. At defaults dt=2.5e-7 s.
+Physical dt=(tau-0.5)*dx^2/(3*nu-liquid); changing tau/dx changes stability.

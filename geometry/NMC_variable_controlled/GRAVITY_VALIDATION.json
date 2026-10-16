@@ -1,0 +1,7 @@
+{
+  "gravity_y_m_s2": -9.81,
+  "gravity_y_lattice": -1.2262500000000024e-07,
+  "gravity_smoke_steps": 10,
+  "status": "PASS",
+  "zero_gravity_reproduces_baseline": true
+}

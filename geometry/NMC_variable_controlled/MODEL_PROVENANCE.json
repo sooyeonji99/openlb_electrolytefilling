@@ -1,0 +1,19 @@
+{
+  "geometry.h": {
+    "sha256": "6295510edbb4f9e401ba066a5b2928a2713b7249b6da941ce5336a72600d83ba",
+    "identical_to_validated_model": true
+  },
+  "physical_range_coupling.h": {
+    "sha256": "d5437a7281899d29b206f10dfc44bb0877c6096002fa36f166fed084252fdd03",
+    "identical_to_validated_model": true
+  },
+  "phase_projection.h": {
+    "sha256": "5a2ca12faf4b0438da29c0abfae64959ffa2a13c7daefbc0877d233ae545e549",
+    "identical_to_validated_model": true
+  },
+  "solver_body_identical": false,
+  "changes_after_copy": [
+    "Added optional uniform y gravity via EXTERNAL_FORCE; default gravity remains zero.",
+    "Added gravity values to run_config.csv."
+  ]
+}
