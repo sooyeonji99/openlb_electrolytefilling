@@ -1,0 +1,4 @@
+key,value
+mpi_ranks,2
+thread_count_per_rank,1
+binding,core

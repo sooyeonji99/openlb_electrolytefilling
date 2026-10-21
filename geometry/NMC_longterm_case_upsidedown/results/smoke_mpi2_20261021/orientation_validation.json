@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "top_source_phi": 1,
+  "top_wall": true,
+  "bottom_open": true,
+  "left_right_open": true,
+  "unique_geometry_nodes": 316848
+}

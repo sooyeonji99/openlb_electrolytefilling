@@ -1,0 +1,9 @@
+{
+  "geometry_reflection": "PASS at every grid node",
+  "mpi_2ranks_100steps": "PASS",
+  "pressure_zero": "PASS",
+  "continuous_100hz_from_start": "PASS",
+  "vtk": "PASS",
+  "orientation": "PASS",
+  "long_60ms_run_started": false
+}

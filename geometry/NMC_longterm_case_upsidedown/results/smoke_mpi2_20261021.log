@@ -1,0 +1,50 @@
+
+    ┃
+    ┃  ┏━━━━┓      ▁▁▁▁                   ▁▁    ▁▁▁▁
+    ┃  ┃    ┃     ╱ ▁▁ ╲▁▁▁▁  ▁▁▁  ▁▁▁▁  ╱ ╱   ╱ ▁▁ ╲
+ ┏━━╋━┓┃    ┃    ╱ ╱ ╱ ╱ ▁▁ ╲╱ ▁ ╲╱ ▁▁ ╲╱ ╱   ╱ ╱▁╱ ╱
+ ┃  ┗━╋╋━━━━┻┓  ╱ ╱▁╱ ╱ ╱▁╱ ╱  ▁▁╱ ╱ ╱ ╱ ╱▁▁▁╱ ╱▁╱ ╱
+ ┃    ┃┃     ┃  ╲▁▁▁▁╱ ▁▁▁▁╱╲▁▁▁╱▁╱ ╱▁╱▁▁▁▁▁╱▁▁▁▁▁╱
+ ┗━━━━┛┃     ┃      ╱▁╱ ==========================>>
+       ┗━━━━━┛
+
+[initialize] Version  : NMC_longterm_case_upsidedown
+[initialize] Platform : CPU_SISD
+[initialize] Parallel : MPI
+[initialize] MPI      : 2 ranks
+[ThreadPool] Sucessfully initialized, numThreads=1
+[Directories] Directory ./tmp/ created.
+[Directories] Directory ./tmp/imageData/ created.
+[Directories] Directory ./tmp/imageData/data/ created.
+[Directories] Directory ./tmp/vtkData/ created.
+[Directories] Directory ./tmp/vtkData/data/ created.
+[Directories] Directory ./tmp/gnuplotData/ created.
+[Directories] Directory ./tmp/gnuplotData/data/ created.
+[Directories] Directory ./tmp/introspectionData/ created.
+[Directories] Directory results/smoke_mpi2_20261021/imageData/ created.
+[Directories] Directory results/smoke_mpi2_20261021/imageData/data/ created.
+[Directories] Directory results/smoke_mpi2_20261021/vtkData/ created.
+[Directories] Directory results/smoke_mpi2_20261021/vtkData/data/ created.
+[Directories] Directory results/smoke_mpi2_20261021/gnuplotData/ created.
+[Directories] Directory results/smoke_mpi2_20261021/gnuplotData/data/ created.
+[Directories] Directory results/smoke_mpi2_20261021/introspectionData/ created.
+[SuperGeometryStatistics2D] updated
+[SuperGeometry2D] the model is correct!
+[CuboidDecomposition] -- Cuboid Structure Statistics --
+[CuboidDecomposition]  Number of Cuboids: 	2
+[CuboidDecomposition]  Delta       : 		5e-06
+[CuboidDecomposition]  Ratio  (min): 		1
+[CuboidDecomposition]         (max): 		1.1712
+[CuboidDecomposition]  Nodes  (min): 		158240
+[CuboidDecomposition]         (max): 		158608
+[CuboidDecomposition]  Weight (min): 		158240
+[CuboidDecomposition]         (max): 		158608
+[CuboidDecomposition] ---------------------------------
+[SuperGeometryStatistics2D] materialNumber=0; count=2454; minPhysR=(0,0); maxPhysR=(0.0043,0.001835)
+[SuperGeometryStatistics2D] materialNumber=1; count=116263; minPhysR=(1e-05,1e-05); maxPhysR=(0.00429,0.001825)
+[SuperGeometryStatistics2D] materialNumber=2; count=176647; minPhysR=(5e-06,5e-06); maxPhysR=(0.004295,0.00183)
+[SuperGeometryStatistics2D] materialNumber=3; count=19899; minPhysR=(0.00165,0.001335); maxPhysR=(0.00265,0.001825)
+[SuperGeometryStatistics2D] materialNumber=4; count=364; minPhysR=(5e-06,1e-05); maxPhysR=(5e-06,0.001825)
+[SuperGeometryStatistics2D] materialNumber=5; count=364; minPhysR=(0.004295,1e-05); maxPhysR=(0.004295,0.001825)
+[SuperGeometryStatistics2D] materialNumber=6; count=857; minPhysR=(1e-05,5e-06); maxPhysR=(0.00429,5e-06)
+multiphase_status=PASS mean_phi=0.00294808 phi_range=[-6.66134e-16,1] max_u=7.01564e-06
