@@ -1,0 +1,47 @@
+{
+  "smoke_g_initial_rest": {
+    "status": "PASS",
+    "steps": 200,
+    "segments": [
+      "pre_rest"
+    ],
+    "excitation_g": 1,
+    "pressure_pa": 2500,
+    "vtk": "PASS",
+    "finite": "PASS"
+  },
+  "smoke_g_active_up": {
+    "status": "PASS",
+    "steps": 200,
+    "segments": [
+      "sweep_up"
+    ],
+    "excitation_g": 1,
+    "pressure_pa": 2500,
+    "vtk": "PASS",
+    "finite": "PASS"
+  },
+  "smoke_g_all_transitions": {
+    "status": "PASS",
+    "steps": 640,
+    "segments": [
+      "post_rest",
+      "pre_rest",
+      "sweep_down",
+      "sweep_up"
+    ],
+    "excitation_g": 1,
+    "pressure_pa": 2500,
+    "vtk": "PASS",
+    "finite": "PASS"
+  },
+  "analytic_protocol": {
+    "status": "PASS",
+    "duration_s": 1.06,
+    "cycles": 55,
+    "peak_acceleration_m_s2": 9.81,
+    "fixed_g_for_entire_sweep": true,
+    "linear_scaling_and_zero_g_tests": "PASS"
+  },
+  "long_run_started": false
+}
