@@ -1,0 +1,40 @@
+{
+  "smoke_0g": {
+    "status": "PASS",
+    "mpi_ranks": 4,
+    "steps": 200,
+    "gravity_scale": 0,
+    "vtk": "PASS"
+  },
+  "smoke_1g": {
+    "status": "PASS",
+    "mpi_ranks": 4,
+    "steps": 200,
+    "gravity_scale": 1,
+    "vtk": "PASS"
+  },
+  "smoke_2g": {
+    "status": "PASS",
+    "mpi_ranks": 4,
+    "steps": 200,
+    "gravity_scale": 2,
+    "vtk": "PASS"
+  },
+  "zero_g_reference": {
+    "status": "PASS",
+    "max_mean_phi_difference": 0.0
+  },
+  "analytic_waveform": {
+    "status": "PASS",
+    "frequency_hz": 100,
+    "duration_s": 0.12,
+    "cycles": 12,
+    "scales_checked": [
+      0,
+      0.5,
+      1,
+      2
+    ]
+  },
+  "long_run_started": false
+}
