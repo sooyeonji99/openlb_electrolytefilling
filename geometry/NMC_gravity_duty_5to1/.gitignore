@@ -1,0 +1,8 @@
+/.build/
+__pycache__/
+/main
+/main.o
+/geometry_validate
+/test_gravity_excitation
+/results/
+/tmp/
