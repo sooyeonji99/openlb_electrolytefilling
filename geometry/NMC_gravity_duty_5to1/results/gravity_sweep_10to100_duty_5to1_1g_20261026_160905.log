@@ -1,0 +1,48 @@
+
+    ┃
+    ┃  ┏━━━━┓      ▁▁▁▁                   ▁▁    ▁▁▁▁
+    ┃  ┃    ┃     ╱ ▁▁ ╲▁▁▁▁  ▁▁▁  ▁▁▁▁  ╱ ╱   ╱ ▁▁ ╲
+ ┏━━╋━┓┃    ┃    ╱ ╱ ╱ ╱ ▁▁ ╲╱ ▁ ╲╱ ▁▁ ╲╱ ╱   ╱ ╱▁╱ ╱
+ ┃  ┗━╋╋━━━━┻┓  ╱ ╱▁╱ ╱ ╱▁╱ ╱  ▁▁╱ ╱ ╱ ╱ ╱▁▁▁╱ ╱▁╱ ╱
+ ┃    ┃┃     ┃  ╲▁▁▁▁╱ ▁▁▁▁╱╲▁▁▁╱▁╱ ╱▁╱▁▁▁▁▁╱▁▁▁▁▁╱
+ ┗━━━━┛┃     ┃      ╱▁╱ ==========================>>
+       ┗━━━━━┛
+
+[initialize] Version  : NMC_gravity_duty_5to1
+[initialize] Platform : CPU_SISD
+[initialize] Parallel : MPI
+[initialize] MPI      : 4 ranks
+[ThreadPool] Sucessfully initialized, numThreads=1
+[Directories] Directory ./tmp/ created.
+[Directories] Directory ./tmp/imageData/ created.
+[Directories] Directory ./tmp/imageData/data/ created.
+[Directories] Directory ./tmp/vtkData/ created.
+[Directories] Directory ./tmp/vtkData/data/ created.
+[Directories] Directory ./tmp/gnuplotData/ created.
+[Directories] Directory ./tmp/gnuplotData/data/ created.
+[Directories] Directory ./tmp/introspectionData/ created.
+[Directories] Directory results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905/imageData/ created.
+[Directories] Directory results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905/imageData/data/ created.
+[Directories] Directory results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905/vtkData/ created.
+[Directories] Directory results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905/vtkData/data/ created.
+[Directories] Directory results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905/gnuplotData/ created.
+[Directories] Directory results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905/gnuplotData/data/ created.
+[Directories] Directory results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905/introspectionData/ created.
+[SuperGeometryStatistics2D] updated
+[SuperGeometry2D] the model is correct!
+[CuboidDecomposition] -- Cuboid Structure Statistics --
+[CuboidDecomposition]  Number of Cuboids: 	4
+[CuboidDecomposition]  Delta       : 		5e-06
+[CuboidDecomposition]  Ratio  (min): 		1
+[CuboidDecomposition]         (max): 		1.17439
+[CuboidDecomposition]  Nodes  (min): 		157810
+[CuboidDecomposition]         (max): 		158608
+[CuboidDecomposition]  Weight (min): 		157810
+[CuboidDecomposition]         (max): 		158608
+[CuboidDecomposition] ---------------------------------
+[SuperGeometryStatistics2D] materialNumber=0; count=3188; minPhysR=(0,0); maxPhysR=(0.0043,0.00367)
+[SuperGeometryStatistics2D] materialNumber=1; count=241706; minPhysR=(1e-05,1e-05); maxPhysR=(0.00429,0.00366)
+[SuperGeometryStatistics2D] materialNumber=2; count=367185; minPhysR=(5e-06,5e-06); maxPhysR=(0.004295,0.003665)
+[SuperGeometryStatistics2D] materialNumber=3; count=19899; minPhysR=(0.00165,1e-05); maxPhysR=(0.00265,0.0005)
+[SuperGeometryStatistics2D] materialNumber=7; count=857; minPhysR=(1e-05,0.003665); maxPhysR=(0.00429,0.003665)
+multiphase_status=PASS mean_phi=0.487344 phi_range=[-2.22045e-16,1] max_u=0.00176607

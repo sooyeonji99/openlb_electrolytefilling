@@ -1,0 +1,14 @@
+{
+  "started_at": "2026-10-26T16:09:05.429672+09:00",
+  "launcher_pid": 1795451,
+  "working_directory": "/home/qe/openlb/release/openlb_electrolytefilling_gravity/geometry/NMC_gravity_duty_5to1",
+  "command": [
+    "./run_gravity_scale.sh",
+    "1",
+    "results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905",
+    "4"
+  ],
+  "output": "/home/qe/openlb/release/openlb_electrolytefilling_gravity/geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905",
+  "launcher_log": "/home/qe/openlb/release/openlb_electrolytefilling_gravity/geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905.launcher.log",
+  "baseline": "/home/qe/openlb/release/openlb_electrolytefilling_gravity/geometry/NMC_gravity_scale/results/gravity_scale_1g_20261022_185042"
+}

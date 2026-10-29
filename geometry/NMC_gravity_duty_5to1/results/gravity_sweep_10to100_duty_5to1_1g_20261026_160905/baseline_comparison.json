@@ -1,0 +1,75 @@
+{
+  "baseline": "/home/qe/openlb/release/openlb_electrolytefilling_gravity/geometry/NMC_gravity_scale/results/gravity_scale_1g_20261022_185042",
+  "geometry_sha256_matches": {
+    "circles.csv": "90c93b6b90f788e29bc744be6c180b0f26676c760026e9396d8019586827dd95",
+    "geometry.vtk": "6f5c8986c78e91e7b6fa82b127ae9e892a9dc686d99f24f98e1da3ab4159afd4",
+    "geometry_validation.csv": "bf03513646a4b83eca52a97ea338187daa3148a571c250635029e1c4787e2708",
+    "particle_validation.csv": "4b51f91dbb98200316ff247a2a2f0a772b1331326252cb9cbbb6547378eddc84"
+  },
+  "all_non_excitation_conditions_match": true,
+  "config_differences": {
+    "excitation_acceleration_model": {
+      "previous": "prescribed_sinusoidal_acceleration",
+      "current": "gated_sinusoidal_frequency_modulation"
+    },
+    "excitation_active_time_s": {
+      "previous": null,
+      "current": "0.10000000000000001"
+    },
+    "excitation_phase_policy": {
+      "previous": "continuous_constant_frequency",
+      "current": "continuous_through_rest"
+    },
+    "excitation_frequency_max_hz": {
+      "previous": null,
+      "current": "100"
+    },
+    "excitation_rest_s": {
+      "previous": null,
+      "current": "0.001"
+    },
+    "excitation_sweep_period_s": {
+      "previous": null,
+      "current": "0.12"
+    },
+    "excitation_duty_fraction": {
+      "previous": null,
+      "current": "0.83333333333333337"
+    },
+    "excitation_frequency_min_hz": {
+      "previous": null,
+      "current": "10"
+    },
+    "excitation_on_s": {
+      "previous": null,
+      "current": "0.0050000000000000001"
+    },
+    "excitation_set_period_s": {
+      "previous": null,
+      "current": "0.0060000000000000001"
+    },
+    "excitation_requested_sets": {
+      "previous": null,
+      "current": "19.999999999999872"
+    },
+    "model_variant": {
+      "previous": "regularized_phase_gravity_scale",
+      "current": "regularized_phase_gravity_duty_5to1"
+    },
+    "excitation_mode": {
+      "previous": "constant_frequency",
+      "current": "sinusoidal_frequency_sweep_on_rest"
+    },
+    "excitation_frequency_hz": {
+      "previous": "100",
+      "current": null
+    },
+    "excitation_frequency_law": {
+      "previous": null,
+      "current": "sinusoidal_min_max_min"
+    }
+  },
+  "startup_step": 326,
+  "startup_finite": true,
+  "forcing_rows_checked": 327
+}

@@ -1,0 +1,8 @@
+geometry/NMC_gravity_scale/results/gravity_scale_1g_20261022_185042/forcing_history.csv filter=lfs diff=lfs merge=lfs -text
+geometry/NMC_gravity_scale/results/gravity_scale_1g_20261022_185042/multiphase_diagnostics.csv filter=lfs diff=lfs merge=lfs -text
+geometry/NMC_gravity_scale/results/gravity_scale_1g_20261022_185042/outlet_diagnostics.csv filter=lfs diff=lfs merge=lfs -text
+geometry/NMC_gravity_scale/results/gravity_scale_1g_20261022_185042/vtkData/data/*.vti filter=lfs diff=lfs merge=lfs -text
+geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905/forcing_history.csv filter=lfs diff=lfs merge=lfs -text
+geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905/multiphase_diagnostics.csv filter=lfs diff=lfs merge=lfs -text
+geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905/outlet_diagnostics.csv filter=lfs diff=lfs merge=lfs -text
+geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905/vtkData/data/*.vti filter=lfs diff=lfs merge=lfs -text

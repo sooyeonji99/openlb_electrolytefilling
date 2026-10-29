@@ -1,0 +1,46 @@
+{
+  "destination": "https://github.com/sooyeonji99/openlb_electrolytefilling",
+  "storage": "Large CSV and VTI files are stored with Git LFS; remaining metadata is ordinary Git.",
+  "runs": [
+    {
+      "label": "long_term",
+      "path": "geometry/NMC_gravity_scale/results/gravity_scale_1g_20261022_185042",
+      "status": "PASS",
+      "steps": 1920000,
+      "physical_time_s": 0.11999999999999923,
+      "final_pore_mean_phi": 0.48712905133750256,
+      "files": 986,
+      "result_bytes": 9567867644,
+      "related_files": [
+        "geometry/NMC_gravity_scale/results/gravity_scale_1g_20261022_185042.analysis.log",
+        "geometry/NMC_gravity_scale/results/gravity_scale_1g_20261022_185042.log",
+        "geometry/NMC_gravity_scale/results/gravity_scale_1g_20261022_185042.parallel.csv",
+        "geometry/NMC_gravity_scale/results/gravity_scale_1g_20261022_185042.vtk_check.log"
+      ],
+      "vtk_snapshots_checked": 772,
+      "vtk_invalid_snapshots": 0,
+      "all_logged_finite": true
+    },
+    {
+      "label": "sine_sweep",
+      "path": "geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905",
+      "status": "PASS",
+      "steps": 1920000,
+      "physical_time_s": 0.11999999999999923,
+      "final_pore_mean_phi": 0.4873443667158526,
+      "files": 987,
+      "result_bytes": 9590637684,
+      "related_files": [
+        "geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905.analysis.log",
+        "geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905.launch.json",
+        "geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905.launcher.log",
+        "geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905.log",
+        "geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905.parallel.csv",
+        "geometry/NMC_gravity_duty_5to1/results/gravity_sweep_10to100_duty_5to1_1g_20261026_160905.vtk_check.log"
+      ],
+      "vtk_snapshots_checked": 772,
+      "vtk_invalid_snapshots": 0,
+      "all_logged_finite": true
+    }
+  ]
+}
